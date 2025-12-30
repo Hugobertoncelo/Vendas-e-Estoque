@@ -1,17 +1,17 @@
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 import {
   IColumn,
   CellFunctionParams,
-} from '../../../../models/interfaces/IColumn'
-import { format } from '../../../../utils/format'
-import { ISale } from '../../../../models/interfaces/ISale'
-import style from '../Sales.module.scss'
-import { faCancel, faPen } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+} from "../../../../models/interfaces/IColumn";
+import { format } from "../../../../utils/format";
+import { ISale } from "../../../../models/interfaces/ISale";
+import style from "../Sales.module.scss";
+import { faCancel, faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface UseColumnsParams {
-  handleCancelSale: (sale: ISale) => void
-  handleEditSale: (sale: ISale) => void
+  handleCancelSale: (sale: ISale) => void;
+  handleEditSale: (sale: ISale) => void;
 }
 
 export function useColumns({
@@ -21,67 +21,78 @@ export function useColumns({
   const actions = [
     {
       icon: <FontAwesomeIcon className={style.icon} icon={faPen} />,
-      title: 'Editar venda',
+      title: "Editar venda",
       onClickFunction: handleEditSale,
       className: style.editButton,
     },
     {
       icon: <FontAwesomeIcon className={style.icon} icon={faCancel} />,
-      title: 'Cancelar venda',
+      title: "Cancelar venda",
       onClickFunction: handleCancelSale,
       className: style.cancelButton,
     },
-  ]
+  ];
 
   return [
     {
-      headerName: 'Nº da venda',
-      field: 'code',
+      headerName: "Nº da venda",
+      field: "code",
       valueFormatter: (params: CellFunctionParams<ISale>) => params.value,
       cellClass: ({ data: { status } }) => {
-        if (status === 'canceled') return style.canceledText
+        if (status === "canceled") return style.canceledText;
       },
     },
     {
-      headerName: 'Cliente',
-      field: 'client',
+      headerName: "Cliente",
+      field: "client",
       valueFormatter: ({ data: { client } }: CellFunctionParams<ISale>) =>
-        client?.name || '--',
+        client?.name || "--",
       cellClass: ({ data: { status } }) => {
-        if (status === 'canceled') return style.canceledText
+        if (status === "canceled") return style.canceledText;
       },
     },
     {
-      headerName: 'Data da venda',
-      field: 'date',
+      headerName: "Produto",
+      field: "products",
+      valueFormatter: ({ data }: CellFunctionParams<ISale>) =>
+        data.products && data.products.length > 0
+          ? data.products.map((p) => p.name).join(", ")
+          : "--",
+      cellClass: ({ data: { status } }) => {
+        if (status === "canceled") return style.canceledText;
+      },
+    },
+    {
+      headerName: "Data da venda",
+      field: "date",
       valueFormatter: (params: CellFunctionParams<ISale>) =>
-        dayjs(params.value).format('DD/MM/YYYY - HH:mm'),
+        dayjs(params.value).format("DD/MM/YYYY - HH:mm"),
       cellClass: ({ data: { status } }) => {
-        if (status === 'canceled') return style.canceledText
+        if (status === "canceled") return style.canceledText;
       },
     },
     {
-      headerName: 'Forma de pagamento',
-      field: 'paymentType',
+      headerName: "Forma de pagamento",
+      field: "paymentType",
       valueFormatter: (params: CellFunctionParams<ISale>) =>
         format.formatarFormaDePagamento(params.value),
       cellClass: ({ data: { status } }) => {
-        if (status === 'canceled') return style.canceledText
+        if (status === "canceled") return style.canceledText;
       },
     },
     {
-      headerName: 'Valor total',
-      field: 'totalValue',
+      headerName: "Valor total",
+      field: "totalValue",
       valueFormatter: (params: CellFunctionParams<ISale>) =>
         format.formatarReal(params.value),
       cellClass: ({ data: { status } }) => {
-        if (status === 'canceled') return style.canceledText
+        if (status === "canceled") return style.canceledText;
       },
     },
     {
-      headerName: '',
-      field: 'acoes',
-      type: 'actions',
+      headerName: "",
+      field: "acoes",
+      type: "actions",
       cellRenderer: (params: CellFunctionParams<ISale>) => {
         return (
           <div className={style.actionsContainer}>
@@ -91,18 +102,18 @@ export function useColumns({
                   className={action.className}
                   key={action.title}
                   type="button"
-                  disabled={params?.data?.status === 'canceled'}
+                  disabled={params?.data?.status === "canceled"}
                   onClick={() => {
-                    action?.onClickFunction?.(params.data)
+                    action?.onClickFunction?.(params.data);
                   }}
                 >
                   {icon && icon}
                 </button>
-              )
+              );
             })}
           </div>
-        )
+        );
       },
     },
-  ]
+  ];
 }

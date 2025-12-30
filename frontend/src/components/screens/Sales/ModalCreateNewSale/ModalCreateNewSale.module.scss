@@ -84,3 +84,44 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .listProducts {
+    li {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 6px !important;
+      padding: 0.7rem 0.7rem !important;
+
+      .productMainRow {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+      }
+      .productFieldsRow {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 58px;
+        margin-top: 2px;
+        width: 100%;
+      }
+      .inputProduct {
+        min-width: 60px !important;
+        max-width: 80px !important;
+        font-size: 14px;
+      }
+      .removeProductIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-size: 22px !important;
+        min-width: 32px;
+        height: 32px;
+      }
+    }
+  }
+}

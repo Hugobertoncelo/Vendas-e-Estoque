@@ -98,22 +98,103 @@ export function ModalCreateNewSale({
               })}
             </CustomTextField>
 
-            <CustomTextField
-              size="small"
-              className={style.input}
-              label="Produtos"
-              select
-              placeholder="Selecione um produto"
-              onChange={handleAddNewProduct}
-            >
-              {productsList.map(({ _id, name, stock }) => {
-                return (
-                  <MenuItem key={_id} value={_id}>
-                    {name} {stock !== undefined ? `(Estoque: ${stock})` : ""}
-                  </MenuItem>
-                );
-              })}
-            </CustomTextField>
+            <Autocomplete
+              options={productsList}
+              getOptionLabel={(option) =>
+                `${option.name} ${option.stock !== undefined ? `| ` : ""}`
+              }
+              renderOption={(props, option) => (
+                <li
+                  {...props}
+                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                >
+                  <span
+                    style={{
+                      fontWeight: 500,
+                      display: "inline-block",
+                      maxWidth: 160,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      verticalAlign: "middle",
+                      position: "relative",
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget.querySelector(
+                        ".marquee-text"
+                      ) as HTMLElement | null;
+                      if (option.name && option.name.length > 18 && el) {
+                        el.style.animation = "marquee 3s linear infinite";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget.querySelector(
+                        ".marquee-text"
+                      ) as HTMLElement | null;
+                      if (el) el.style.animation = "";
+                    }}
+                    onTouchStart={(e) => {
+                      const el = e.currentTarget.querySelector(
+                        ".marquee-text"
+                      ) as HTMLElement | null;
+                      if (option.name && option.name.length > 18 && el) {
+                        el.style.animation = "marquee 3s linear infinite";
+                      }
+                    }}
+                    onTouchEnd={(e) => {
+                      const el = e.currentTarget.querySelector(
+                        ".marquee-text"
+                      ) as HTMLElement | null;
+                      if (el) el.style.animation = "";
+                    }}
+                    title={option.name}
+                  >
+                    <span
+                      className="marquee-text"
+                      style={{
+                        display: "inline-block",
+                        minWidth: "100%",
+                        willChange: "transform",
+                      }}
+                    >
+                      {option.name}
+                    </span>
+                  </span>
+                  {option.stock !== undefined && (
+                    <span
+                      style={{
+                        background: option.stock > 0 ? "#e6f4ea" : "#ffeaea",
+                        color: option.stock > 0 ? "#2e7d32" : "#c62828",
+                        borderRadius: 8,
+                        fontSize: 12,
+                        padding: "2px 8px",
+                        marginLeft: 30,
+                        fontWeight: 600,
+                        letterSpacing: 0.5,
+                      }}
+                    >
+                      {option.stock > 0
+                        ? `Estoque: ${option.stock}`
+                        : "Sem estoque"}
+                    </span>
+                  )}
+                </li>
+              )}
+              renderInput={(params) => (
+                <CustomTextField
+                  {...params}
+                  size="small"
+                  className={style.input}
+                  label="Produtos"
+                  placeholder="Pesquise um produto"
+                />
+              )}
+              onChange={(event, value) => {
+                if (value?._id)
+                  handleAddNewProduct({ target: { value: value._id } });
+              }}
+              isOptionEqualToValue={(option, value) => option._id === value._id}
+            />
           </div>
         </section>
         <section className={style.sectionContainer}>
@@ -131,12 +212,88 @@ export function ModalCreateNewSale({
                 );
                 return (
                   <li key={product?._id}>
-                    <span>
-                      {product?.name}{" "}
-                      {fullProduct?.stock !== undefined
-                        ? `(Estoque: ${fullProduct.stock})`
-                        : ""}
+                    <span
+                      style={{
+                        fontWeight: 500,
+                        display: "inline-block",
+                        maxWidth: 110,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        verticalAlign: "middle",
+                        position: "relative",
+                      }}
+                      onMouseEnter={(e) => {
+                        const el = e.currentTarget.querySelector(
+                          ".marquee-text"
+                        ) as HTMLElement | null;
+                        if (
+                          el &&
+                          fullProduct?.name &&
+                          fullProduct.name.length > 18
+                        ) {
+                          el.style.animation = "marquee 3s linear infinite";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.currentTarget.querySelector(
+                          ".marquee-text"
+                        ) as HTMLElement | null;
+                        if (el) {
+                          el.style.animation = "";
+                        }
+                      }}
+                      onTouchStart={(e) => {
+                        const el = e.currentTarget.querySelector(
+                          ".marquee-text"
+                        ) as HTMLElement | null;
+                        if (
+                          el &&
+                          fullProduct?.name &&
+                          fullProduct.name.length > 18
+                        ) {
+                          el.style.animation = "marquee 1s linear infinite";
+                        }
+                      }}
+                      onTouchEnd={(e) => {
+                        const el = e.currentTarget.querySelector(
+                          ".marquee-text"
+                        ) as HTMLElement | null;
+                        if (el) {
+                          el.style.animation = "";
+                        }
+                      }}
+                    >
+                      <span
+                        className="marquee-text"
+                        style={{
+                          display: "inline-block",
+                          minWidth: "100%",
+                          willChange: "transform",
+                        }}
+                      >
+                        {product?.name}
+                      </span>
                     </span>
+                    {fullProduct?.stock !== undefined && (
+                      <span
+                        style={{
+                          background:
+                            fullProduct.stock > 0 ? "#e6f4ea" : "#ffeaea",
+                          color: fullProduct.stock > 0 ? "#2e7d32" : "#c62828",
+                          borderRadius: 8,
+                          fontSize: 12,
+                          padding: "2px 8px",
+                          marginLeft: 8,
+                          fontWeight: 600,
+                          letterSpacing: 0.5,
+                        }}
+                      >
+                        {fullProduct.stock > 0
+                          ? `Estoque: ${fullProduct.stock}`
+                          : "Sem estoque"}
+                      </span>
+                    )}
                     <CustomTextField
                       className={style.inputProduct}
                       label="Quantidade"
@@ -161,7 +318,6 @@ export function ModalCreateNewSale({
                         handleChangeProduct(event, index);
                       }}
                     />
-
                     <FontAwesomeIcon
                       onClick={() => {
                         handleRemoveProduct(product?._id);
@@ -180,6 +336,12 @@ export function ModalCreateNewSale({
           )}
         </section>
       </div>
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-100%); }
+        }
+      `}</style>
     </ModalLayout>
   );
 }
