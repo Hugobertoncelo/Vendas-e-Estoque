@@ -2,7 +2,7 @@ import { IClient } from "./IClient";
 import { IProduct } from "./IProduct";
 
 export interface ISaleProduct extends IProduct {
-  stock: number;
+  stock?: number;
 }
 
 export interface ISale {

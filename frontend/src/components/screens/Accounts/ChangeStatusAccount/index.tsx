@@ -1,20 +1,20 @@
-import { CellFunctionParams } from '../../../../models/interfaces/IColumn'
-import style from '../Accounts.module.scss'
-import { IAccount } from '../../../../models/interfaces/IAccount'
-import { CustomSelect } from './CustomSelect'
-import { MenuItem } from '@mui/material'
-import { useStatus } from '../hooks/useStatus'
+import { CellFunctionParams } from "../../../../models/interfaces/IColumn";
+import style from "../Accounts.module.scss";
+import { IAccount } from "../../../../models/interfaces/IAccount";
+import { CustomSelect } from "./CustomSelect";
+import { MenuItem } from "@mui/material";
+import { useStatus } from "../hooks/useStatus";
 
 type Props = {
-  params: CellFunctionParams<IAccount>
-}
+  params: CellFunctionParams<IAccount>;
+};
 
 export function ChangeStatusAccount({ params }: Props) {
-  const { handleChangeStatusAccount } = useStatus(params)
+  const { handleChangeStatusAccount } = useStatus(params);
 
   return (
     <CustomSelect
-      className={style[params.value || '']}
+      className={style[params.value || ""]}
       size="small"
       fullWidth
       select
@@ -25,5 +25,5 @@ export function ChangeStatusAccount({ params }: Props) {
       <MenuItem value="overdue">Vencida</MenuItem>
       <MenuItem value="pending">Pendente</MenuItem>
     </CustomSelect>
-  )
+  );
 }
