@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node-dev --transpile-only ./src/shared/http/server.ts",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "vercel-server": "tsc && node dist/index.js"
   },
   "author": "",
   "license": "ISC",
