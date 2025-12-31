@@ -17,9 +17,10 @@ app.use(handleErrors);
 
 export default async function handler(req, res) {
   if (mongoose.connection.readyState !== 1) {
-    await mongoose.connect(process.env.MONGO_URL || "", {
-      bufferCommands: false,
-    });
+    const MONGO_USERNAME = process.env.MONGO_USERNAME;
+    const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+    const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`;
+    await mongoose.connect(mongoURL, { bufferCommands: false });
   }
   return app(req, res);
 }
