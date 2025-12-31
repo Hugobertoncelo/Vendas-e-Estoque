@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import "./shared/containers";
+import "./database/mongoConfigs";
 import express from "express";
 import cors from "cors";
 import "express-async-errors";
@@ -13,5 +14,4 @@ app.use(express.json());
 app.use(routes);
 app.use(handleErrors);
 
-// Exporta o app Express diretamente para o Vercel
 export default app;
