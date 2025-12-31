@@ -18,16 +18,40 @@ app.use(handleErrors);
 export default async function handler(req, res) {
   if (mongoose.connection.readyState !== 1) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
-    const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
-    const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`;
+    let MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+    // Codifica a senha para uso seguro na URL
+    const encodedPassword = encodeURIComponent(MONGO_PASSWORD || "");
+    // Log seguro para debug
+    console.log(`[MONGOOSE][HANDLER] Usuário: ${MONGO_USERNAME}`);
+    if (MONGO_PASSWORD) {
+      console.log(
+        `[MONGOOSE][HANDLER] Senha (início): ${MONGO_PASSWORD.slice(
+          0,
+          2
+        )}... (tamanho: ${MONGO_PASSWORD.length})`
+      );
+    } else {
+      console.warn("[MONGOOSE][HANDLER] Senha não definida!");
+    }
+    const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${encodedPassword}@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`;
+    // Loga a string de conexão sem a senha
+    console.log(
+      `[MONGOOSE][HANDLER] Conectando em: mongodb+srv://${MONGO_USERNAME}:<PASSWORD>@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`
+    );
     try {
       await mongoose.connect(mongoURL, { bufferCommands: false });
+      console.log("[MONGOOSE][HANDLER] Conexão estabelecida com sucesso!");
     } catch (err) {
       console.error("[MONGOOSE ERROR][HANDLER] Falha ao conectar:", err);
-      return res
-        .status(500)
-        .json({ error: "Erro ao conectar ao MongoDB", details: err.message });
+      return res.status(500).json({
+        error: "Erro ao conectar ao MongoDB",
+        details: err.message,
+        stack: err.stack,
+        full: err,
+      });
     }
+  } else {
+    console.log("[MONGOOSE][HANDLER] Já conectado ao MongoDB.");
   }
   return app(req, res);
 }
