@@ -12,8 +12,5 @@ app.use(express.json());
 app.use(routes);
 app.use(handleErrors);
 
-import { VercelRequest, VercelResponse } from "@vercel/node";
-
-export default (req: VercelRequest, res: VercelResponse) => {
-  app(req, res);
-};
+// Exporta o app Express diretamente para o Vercel
+export default app;

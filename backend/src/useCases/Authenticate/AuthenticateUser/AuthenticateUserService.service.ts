@@ -60,7 +60,11 @@ export class AuthenticateUserService {
       expiresRefreshTokenDays
     } = auth
 
-    const token = sign({}, secretToken, {
+    if (!secretToken || !secretRefreshToken) {
+      throw new AppError('JWT secret(s) não definidos nas variáveis de ambiente');
+    }
+
+    const token = sign({ sub: user._id.toString() }, secretToken, {
       subject: user._id.toString(),
       expiresIn: expiresInToken,
     })
