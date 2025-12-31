@@ -70,7 +70,7 @@ export class AuthenticateUserService {
       subject: user._id.toString(),
       expiresIn: expiresInToken,
     };
-    const token = sign({ sub: user._id.toString() }, secretToken, tokenOptions);
+    const token = sign({}, secretToken, tokenOptions);
 
     const refreshTokenOptions: SignOptions = {
       subject: user._id.toString(),
