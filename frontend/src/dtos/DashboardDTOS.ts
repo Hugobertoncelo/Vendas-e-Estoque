@@ -1,3 +1,3 @@
 export interface GetPaymentTypesDTO {
-  filters: any
+  filters: any;
 }

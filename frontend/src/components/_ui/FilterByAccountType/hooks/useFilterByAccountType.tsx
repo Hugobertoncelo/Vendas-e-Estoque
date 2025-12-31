@@ -1,48 +1,48 @@
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import {
   filterByAccountTypeSchema,
   IFilterByAccountType,
-} from '../interfaces/IFilterByAccountType'
-import { zodResolver } from '@hookform/resolvers/zod'
+} from "../interfaces/IFilterByAccountType";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function useFilterByAccountType() {
-  const router = useRouter()
+  const router = useRouter();
   const {
     register,
     watch,
     formState: { errors },
   } = useForm<IFilterByAccountType>({
     defaultValues: {
-      accountType: router?.query?.accountType?.toString() || 'all',
+      accountType: router?.query?.accountType?.toString() || "all",
     },
     resolver: zodResolver(filterByAccountTypeSchema),
-  })
+  });
 
-  const accountType = watch('accountType')
+  const accountType = watch("accountType");
 
   function handleSelectAccountType() {
-    if (accountType !== 'all') {
+    if (accountType !== "all") {
       router.push({
         pathname: router.route,
         query: {
           accountType,
         },
-      })
+      });
 
-      return
+      return;
     }
 
-    router.push(router.route)
+    router.push(router.route);
   }
 
   useEffect(() => {
-    handleSelectAccountType()
-  }, [accountType])
+    handleSelectAccountType();
+  }, [accountType]);
 
   return {
     register,
     errors,
-  }
+  };
 }

@@ -31,9 +31,7 @@
     line-height: 1;
 
     cursor: pointer;
-    transition:
-      filter 0.2s,
-      opacity 0.2s;
+    transition: filter 0.2s, opacity 0.2s;
 
     &:not(:disabled):hover {
       filter: brightness(0.8);

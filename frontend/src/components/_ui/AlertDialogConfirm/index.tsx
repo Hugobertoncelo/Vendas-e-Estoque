@@ -1,12 +1,12 @@
-import { useContext } from 'react'
-import { AlertContext } from '../../../contexts/alertContext'
-import style from './AlertDialogConfirm.module.scss'
-import { Modal } from '@mui/material'
+import { useContext } from "react";
+import { AlertContext } from "../../../contexts/alertContext";
+import style from "./AlertDialogConfirm.module.scss";
+import { Modal } from "@mui/material";
 
 export function AlertDialogConfirm() {
-  const { alertDialogConfirmConfigs: configs } = useContext(AlertContext)
+  const { alertDialogConfirmConfigs: configs } = useContext(AlertContext);
 
-  if (!configs.open) return <></>
+  if (!configs.open) return <></>;
 
   return (
     <Modal
@@ -15,8 +15,8 @@ export function AlertDialogConfirm() {
       className={style.alertOverlay}
     >
       <div className={style.alertContainer}>
-        <h3 className={style.title}>{configs?.title || '--'}</h3>
-        <span className={style.text}>{configs?.text || '--'}</span>
+        <h3 className={style.title}>{configs?.title || "--"}</h3>
+        <span className={style.text}>{configs?.text || "--"}</span>
 
         <div className={style.buttonsContainer}>
           <button
@@ -28,8 +28,8 @@ export function AlertDialogConfirm() {
           <button
             className={`${style.button} ${style.confirmButton}`}
             onClick={async () => {
-              await configs.onClickAgree()
-              configs.handleClose()
+              await configs.onClickAgree();
+              configs.handleClose();
             }}
           >
             Confirmar
@@ -37,5 +37,5 @@ export function AlertDialogConfirm() {
         </div>
       </div>
     </Modal>
-  )
+  );
 }

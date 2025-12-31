@@ -1,13 +1,13 @@
-import { ModalLayout } from '../../../_ui/ModalLayout'
-import style from './ModalCreateNewSupplier.module.scss'
-import { CustomTextField } from '../../../_ui/CustomTextField'
-import { useFormSupplier } from '../hooks/useFormSupplier'
-import { ISupplier } from '../../../../models/interfaces/ISupplier'
+import { ModalLayout } from "../../../_ui/ModalLayout";
+import style from "./ModalCreateNewSupplier.module.scss";
+import { CustomTextField } from "../../../_ui/CustomTextField";
+import { useFormSupplier } from "../hooks/useFormSupplier";
+import { ISupplier } from "../../../../models/interfaces/ISupplier";
 
 interface Props {
-  supplierDataToEdit: ISupplier | null
-  open: boolean
-  handleClose: () => void
+  supplierDataToEdit: ISupplier | null;
+  open: boolean;
+  handleClose: () => void;
 }
 
 export function ModalCreateNewSupplier({
@@ -25,19 +25,19 @@ export function ModalCreateNewSupplier({
   } = useFormSupplier({
     handleClose,
     supplierDataToEdit,
-  })
+  });
 
   return (
     <ModalLayout
       open={open}
       handleClose={handleClose}
       onSubmit={handleSubmit(
-        supplierDataToEdit ? onEditSupplier : onCreateNewSupplier,
+        supplierDataToEdit ? onEditSupplier : onCreateNewSupplier
       )}
       title="Cadastro de fornecedor"
       submitButtonText="Cadastrar"
       loading={isSubmitting}
-      customStyle={{ width: '500px' }}
+      customStyle={{ width: "500px" }}
     >
       <div className={style.fieldsContainer}>
         <CustomTextField
@@ -45,7 +45,7 @@ export function ModalCreateNewSupplier({
           label="Nome"
           type="text"
           placeholder="Digite o nome do fornecedor"
-          {...register('name', { required: true })}
+          {...register("name", { required: true })}
           error={!!errors.name}
           helperText={errors.name && errors.name.message}
         />
@@ -54,7 +54,7 @@ export function ModalCreateNewSupplier({
           label="E-mail"
           type="email"
           placeholder="Digite o e-mail"
-          {...register('email')}
+          {...register("email")}
         />
 
         <CustomTextField
@@ -62,7 +62,7 @@ export function ModalCreateNewSupplier({
           label="CNPJ"
           type="number"
           placeholder="Digite o CNPJ do fornecedor"
-          {...register('cnpj')}
+          {...register("cnpj")}
         />
 
         <CustomTextField
@@ -70,9 +70,9 @@ export function ModalCreateNewSupplier({
           label="Telefone"
           type="tel"
           placeholder="Digite o telefone"
-          {...register('phone')}
+          {...register("phone")}
         />
       </div>
     </ModalLayout>
-  )
+  );
 }

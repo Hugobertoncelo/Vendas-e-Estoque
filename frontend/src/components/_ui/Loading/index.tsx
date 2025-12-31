@@ -1,19 +1,19 @@
-import { Box, CircularProgress } from '@mui/material'
+import { Box, CircularProgress } from "@mui/material";
 
 type Props = {
-  size?: number
-  color?: string
-}
+  size?: number;
+  color?: string;
+};
 
 export function Loading({ size, color }: Props) {
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
+        display: "flex",
+        justifyContent: "center",
       }}
     >
-      <CircularProgress style={{ color: color || 'white' }} size={size || 17} />
+      <CircularProgress style={{ color: color || "white" }} size={size || 17} />
     </Box>
-  )
+  );
 }

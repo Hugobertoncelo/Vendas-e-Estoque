@@ -1,14 +1,14 @@
-import { ModalLayout } from '../../../_ui/ModalLayout'
-import style from './ModalCreateNewClient.module.scss'
-import { CustomTextField } from '../../../_ui/CustomTextField'
-import { IClient } from '../../../../models/interfaces/IClient'
-import { useFormClient } from '../hooks/useFormClient'
+import { ModalLayout } from "../../../_ui/ModalLayout";
+import style from "./ModalCreateNewClient.module.scss";
+import { CustomTextField } from "../../../_ui/CustomTextField";
+import { IClient } from "../../../../models/interfaces/IClient";
+import { useFormClient } from "../hooks/useFormClient";
 
 type Props = {
-  clientDataToEdit: IClient | null
-  open: boolean
-  handleClose: () => void
-}
+  clientDataToEdit: IClient | null;
+  open: boolean;
+  handleClose: () => void;
+};
 
 export function ModalCreateNewClient({
   open,
@@ -25,19 +25,19 @@ export function ModalCreateNewClient({
   } = useFormClient({
     handleClose,
     clientDataToEdit,
-  })
+  });
 
   return (
     <ModalLayout
       open={open}
       handleClose={handleClose}
       onSubmit={handleSubmit(
-        clientDataToEdit ? onEditClient : onCreateNewClient,
+        clientDataToEdit ? onEditClient : onCreateNewClient
       )}
       title="Cadastro de cliente"
       submitButtonText="Cadastrar"
       loading={isSubmitting}
-      customStyle={{ width: '500px' }}
+      customStyle={{ width: "500px" }}
     >
       <div className={style.fieldsContainer}>
         <CustomTextField
@@ -45,7 +45,7 @@ export function ModalCreateNewClient({
           label="Nome *"
           type="text"
           placeholder="Digite o nome do cliente"
-          {...register('name', { required: true })}
+          {...register("name", { required: true })}
           error={!!errors.name}
           helperText={errors.name && errors.name.message}
         />
@@ -55,7 +55,7 @@ export function ModalCreateNewClient({
           label="Telefone *"
           type="tel"
           placeholder="Digite o telefone"
-          {...register('phone', { required: true })}
+          {...register("phone", { required: true })}
           error={!!errors.phone}
           helperText={errors.phone && errors.phone.message}
         />
@@ -65,7 +65,7 @@ export function ModalCreateNewClient({
           label="E-mail"
           type="email"
           placeholder="Digite o e-mail"
-          {...register('email')}
+          {...register("email")}
         />
 
         <CustomTextField
@@ -73,9 +73,9 @@ export function ModalCreateNewClient({
           label="CPF"
           type="number"
           placeholder="Digite o CPF do cliente"
-          {...register('cpf')}
+          {...register("cpf")}
         />
       </div>
     </ModalLayout>
-  )
+  );
 }

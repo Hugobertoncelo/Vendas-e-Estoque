@@ -1,18 +1,18 @@
-import { useRouter } from 'next/router'
-import { menuOptions } from '../../../models/constants/MenuOptions'
-import style from './MenuOptionsMobile.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRouter } from "next/router";
+import { menuOptions } from "../../../models/constants/MenuOptions";
+import style from "./MenuOptionsMobile.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type Props = {
-  handleOpenMenuOptions: () => void
-}
+  handleOpenMenuOptions: () => void;
+};
 
 export function MenuOptionsMobile({ handleOpenMenuOptions }: Props) {
-  const router = useRouter()
+  const router = useRouter();
 
   function handleSelectOption(option: any) {
-    router.push(option.link)
-    handleOpenMenuOptions()
+    router.push(option.link);
+    handleOpenMenuOptions();
   }
 
   return (
@@ -25,10 +25,10 @@ export function MenuOptionsMobile({ handleOpenMenuOptions }: Props) {
                 <button
                   title={option.title}
                   onClick={() => {
-                    handleSelectOption(option)
+                    handleSelectOption(option);
                   }}
                   style={
-                    disabled ? { opacity: '0.4', cursor: 'not-allowed' } : {}
+                    disabled ? { opacity: "0.4", cursor: "not-allowed" } : {}
                   }
                   className={
                     router.pathname === option.link
@@ -42,10 +42,10 @@ export function MenuOptionsMobile({ handleOpenMenuOptions }: Props) {
                   <span>{option.title}</span>
                 </button>
               </li>
-            )
+            );
           })}
         </ul>
       </nav>
     </div>
-  )
+  );
 }

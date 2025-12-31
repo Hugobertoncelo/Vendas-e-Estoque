@@ -1,16 +1,16 @@
-import { ModalLayout } from '../../../_ui/ModalLayout'
-import style from './ModalCreateNewProduct.module.scss'
-import { CustomTextField } from '../../../_ui/CustomTextField'
-import { Checkbox, FormControlLabel, Popover, Typography } from '@mui/material'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { IProduct } from '../../../../models/interfaces/IProduct'
-import { useFormProduct } from '../hooks/useFormProduct'
+import { ModalLayout } from "../../../_ui/ModalLayout";
+import style from "./ModalCreateNewProduct.module.scss";
+import { CustomTextField } from "../../../_ui/CustomTextField";
+import { Checkbox, FormControlLabel, Popover, Typography } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { IProduct } from "../../../../models/interfaces/IProduct";
+import { useFormProduct } from "../hooks/useFormProduct";
 
 interface Props {
-  productDataToEdit: IProduct | null
-  open: boolean
-  handleClose: () => void
+  productDataToEdit: IProduct | null;
+  open: boolean;
+  handleClose: () => void;
 }
 
 export function ModalCreateNewProduct({
@@ -32,14 +32,14 @@ export function ModalCreateNewProduct({
   } = useFormProduct({
     handleClose,
     productDataToEdit,
-  })
+  });
 
   return (
     <ModalLayout
       open={open}
       handleClose={handleClose}
       onSubmit={handleSubmit(
-        productDataToEdit ? onEditProduct : onCreateNewProduct,
+        productDataToEdit ? onEditProduct : onCreateNewProduct
       )}
       title="Cadastro de produto"
       submitButtonText="Cadastrar"
@@ -51,7 +51,7 @@ export function ModalCreateNewProduct({
           label="Nome *"
           type="text"
           placeholder="Digite o nome"
-          {...register('name', { required: true })}
+          {...register("name", { required: true })}
           error={!!errors?.name}
           helperText={errors.name && errors?.name?.message}
         />
@@ -61,7 +61,7 @@ export function ModalCreateNewProduct({
           label="Quantidade"
           type="number"
           placeholder="Digite a quantidade"
-          {...register('stock', { required: true, valueAsNumber: true })}
+          {...register("stock", { required: true, valueAsNumber: true })}
           error={!!errors.stock}
           helperText={errors.stock && errors?.stock?.message}
         />
@@ -69,13 +69,13 @@ export function ModalCreateNewProduct({
         <div className={style.labelDefaultProduct}>
           <FormControlLabel
             onChange={(event: any) => {
-              setValue('isDefault', event.target.checked)
+              setValue("isDefault", event.target.checked);
             }}
             control={
               <Checkbox
                 checked={isDefault}
                 sx={{
-                  '&.Mui-checked': { color: '#ff6600' },
+                  "&.Mui-checked": { color: "#ff6600" },
                 }}
               />
             }
@@ -86,7 +86,7 @@ export function ModalCreateNewProduct({
             icon={faInfoCircle}
             className={style.infoIcon}
             onClick={(event) => {
-              setAnchorEl(event.currentTarget)
+              setAnchorEl(event.currentTarget);
             }}
           />
 
@@ -95,11 +95,11 @@ export function ModalCreateNewProduct({
             open={!!anchorEl}
             anchorEl={anchorEl}
             onClose={() => {
-              setAnchorEl(null)
+              setAnchorEl(null);
             }}
             anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
+              vertical: "bottom",
+              horizontal: "left",
             }}
           >
             <Typography sx={{ p: 2 }} className={style.popover}>
@@ -114,9 +114,9 @@ export function ModalCreateNewProduct({
           label="Valor"
           type="number"
           placeholder="Digite o valor"
-          {...register('value', { valueAsNumber: true })}
+          {...register("value", { valueAsNumber: true })}
         />
       </div>
     </ModalLayout>
-  )
+  );
 }

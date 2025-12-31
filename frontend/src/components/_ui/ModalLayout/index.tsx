@@ -1,19 +1,19 @@
-import { Modal, Box } from '@mui/material'
-import { ReactNode, FormEvent, CSSProperties } from 'react'
-import style from './ModalLayout.module.scss'
-import { Loading } from '../Loading'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { Modal, Box } from "@mui/material";
+import { ReactNode, FormEvent, CSSProperties } from "react";
+import style from "./ModalLayout.module.scss";
+import { Loading } from "../Loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
-  title: string
-  open: boolean
-  submitButtonText: string
-  handleClose: () => void
-  children: ReactNode
-  onSubmit: (params: FormEvent<HTMLFormElement> | any) => void
-  loading: boolean
-  customStyle?: CSSProperties
+  title: string;
+  open: boolean;
+  submitButtonText: string;
+  handleClose: () => void;
+  children: ReactNode;
+  onSubmit: (params: FormEvent<HTMLFormElement> | any) => void;
+  loading: boolean;
+  customStyle?: CSSProperties;
 }
 export function ModalLayout({
   title,
@@ -34,7 +34,7 @@ export function ModalLayout({
         component="form"
       >
         <Box className={style.header} component="header">
-          <h3>{title || 'Modal'}</h3>
+          <h3>{title || "Modal"}</h3>
 
           <FontAwesomeIcon
             className={style.closeButton}
@@ -48,10 +48,10 @@ export function ModalLayout({
         </Box>
         <Box className={style.footer} component="footer">
           <button disabled={loading} type="submit">
-            {loading ? <Loading size={21} /> : submitButtonText || 'Confirmar'}
+            {loading ? <Loading size={21} /> : submitButtonText || "Confirmar"}
           </button>
         </Box>
       </Box>
     </Modal>
-  )
+  );
 }

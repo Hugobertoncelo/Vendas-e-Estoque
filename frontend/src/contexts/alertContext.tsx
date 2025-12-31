@@ -1,57 +1,57 @@
-import { ReactNode, createContext, useState } from 'react'
-import { AlertDialogConfirm } from '../components/_ui/AlertDialogConfirm'
-import { AlertNotify } from '../components/_ui/AlertNotify'
-import { ALERT_NOTIFY_TYPE } from '../models/enums/AlertNotifyType'
-import { IAlertDialogConfirm } from '../models/interfaces/IAlertDialogConfirm'
-import { IAlertNotify } from '../models/interfaces/IAlertNotify'
+import { ReactNode, createContext, useState } from "react";
+import { AlertDialogConfirm } from "../components/_ui/AlertDialogConfirm";
+import { AlertNotify } from "../components/_ui/AlertNotify";
+import { ALERT_NOTIFY_TYPE } from "../models/enums/AlertNotifyType";
+import { IAlertDialogConfirm } from "../models/interfaces/IAlertDialogConfirm";
+import { IAlertNotify } from "../models/interfaces/IAlertNotify";
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 interface IAlertContext {
-  alertDialogConfirmConfigs: IAlertDialogConfirm
-  setAlertDialogConfirmConfigs: (configs: IAlertDialogConfirm) => void
-  alertNotifyConfigs: IAlertNotify
-  setAlertNotifyConfigs: (configs: IAlertNotify) => void
+  alertDialogConfirmConfigs: IAlertDialogConfirm;
+  setAlertDialogConfirmConfigs: (configs: IAlertDialogConfirm) => void;
+  alertNotifyConfigs: IAlertNotify;
+  setAlertNotifyConfigs: (configs: IAlertNotify) => void;
 }
 
-export const AlertContext = createContext({} as IAlertContext)
+export const AlertContext = createContext({} as IAlertContext);
 
 export function AlertContextComponent({ children }: Props) {
   const [alertDialogConfirmConfigs, setAlertDialogConfirmConfigs] =
     useState<IAlertDialogConfirm>({
       open: false,
-      title: '',
-      text: '',
+      title: "",
+      text: "",
       handleClose: onCloseAlertDialogConfirm,
       onClickAgree: () => undefined,
-    })
+    });
 
   const [alertNotifyConfigs, setAlertNotifyConfigs] = useState<IAlertNotify>({
     open: false,
-    text: '',
+    text: "",
     type: ALERT_NOTIFY_TYPE.SUCCESS,
     handleClose: onCloseNotify,
-  })
+  });
 
   function onCloseNotify() {
     setAlertNotifyConfigs({
       ...alertNotifyConfigs,
       open: false,
-      text: '',
+      text: "",
       type: ALERT_NOTIFY_TYPE.SUCCESS,
-    })
+    });
   }
 
   function onCloseAlertDialogConfirm() {
     setAlertDialogConfirmConfigs({
       ...alertDialogConfirmConfigs,
       open: false,
-      title: '',
-      text: '',
+      title: "",
+      text: "",
       onClickAgree: () => undefined,
-    })
+    });
   }
 
   return (
@@ -67,5 +67,5 @@ export function AlertContextComponent({ children }: Props) {
       <AlertDialogConfirm />
       <AlertNotify />
     </AlertContext.Provider>
-  )
+  );
 }

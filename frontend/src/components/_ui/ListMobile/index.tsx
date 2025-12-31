@@ -4,23 +4,23 @@ import {
   ListItem,
   ListItemButton,
   Skeleton,
-} from '@mui/material'
-import style from './ListMobile.module.scss'
-import { useState } from 'react'
-import { EmptyItems } from '../EmptyItems'
-import { CollapseItem } from './interfaces/CollapseItem'
-import { Field } from './interfaces/Field'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
-import { ItemStatus } from './interfaces/IItemStatus'
+} from "@mui/material";
+import style from "./ListMobile.module.scss";
+import { useState } from "react";
+import { EmptyItems } from "../EmptyItems";
+import { CollapseItem } from "./interfaces/CollapseItem";
+import { Field } from "./interfaces/Field";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { ItemStatus } from "./interfaces/IItemStatus";
 
 type Props = {
-  items: any[]
-  itemFields: Field[]
-  collapseItems: CollapseItem[]
-  emptyText?: string
-  loading?: boolean
-}
+  items: any[];
+  itemFields: Field[];
+  collapseItems: CollapseItem[];
+  emptyText?: string;
+  loading?: boolean;
+};
 
 export function ListMobile({
   items,
@@ -29,12 +29,12 @@ export function ListMobile({
   emptyText,
   loading,
 }: Props) {
-  const [itemOpened, setItemOpened] = useState<ItemStatus>({})
+  const [itemOpened, setItemOpened] = useState<ItemStatus>({});
 
   function handleOpenItem(itemId: string) {
     setItemOpened({
       [itemId]: !itemOpened[itemId],
-    })
+    });
   }
 
   return (
@@ -42,7 +42,7 @@ export function ListMobile({
       {!loading &&
         items?.length > 0 &&
         items?.map((item: any) => {
-          const collapseOpened = itemOpened[item._id] || false
+          const collapseOpened = itemOpened[item._id] || false;
 
           return (
             <div
@@ -54,7 +54,7 @@ export function ListMobile({
             >
               <ListItem
                 onClick={() => {
-                  handleOpenItem(item._id)
+                  handleOpenItem(item._id);
                 }}
                 className={style.listItem}
               >
@@ -67,7 +67,7 @@ export function ListMobile({
                       })}
                       key={field.field}
                       style={{
-                        marginRight: index === 0 ? 'auto' : 0,
+                        marginRight: index === 0 ? "auto" : 0,
                       }}
                     >
                       {field?.valueFormatter?.({
@@ -80,7 +80,7 @@ export function ListMobile({
                         data: item,
                       })}
                     </span>
-                  )
+                  );
                 })}
                 {collapseItems?.length > 0 && (
                   <FontAwesomeIcon
@@ -100,7 +100,7 @@ export function ListMobile({
                           className={style.collapseListItem}
                           disableRipple
                         >
-                          {collapseItem.type === 'actions' ? (
+                          {collapseItem.type === "actions" ? (
                             <>
                               {collapseItem?.cellRenderer?.({
                                 value: item[collapseItem.field],
@@ -109,7 +109,7 @@ export function ListMobile({
                             </>
                           ) : (
                             <>
-                              <span style={{ fontWeight: '600' }}>
+                              <span style={{ fontWeight: "600" }}>
                                 {collapseItem.headerName}
                               </span>
                               <span
@@ -131,17 +131,17 @@ export function ListMobile({
                             </>
                           )}
                         </ListItemButton>
-                      )
+                      );
                     })}
                   </List>
                 </Collapse>
               )}
             </div>
-          )
+          );
         })}
 
       {(items.length === 0 || !items) && !loading && (
-        <EmptyItems text={emptyText || 'Nenhum item encontrado'} />
+        <EmptyItems text={emptyText || "Nenhum item encontrado"} />
       )}
 
       {loading &&
@@ -154,8 +154,8 @@ export function ListMobile({
                   height={18}
                   width={50}
                   sx={{
-                    fontSize: '1rem',
-                    marginRight: 'auto',
+                    fontSize: "1rem",
+                    marginRight: "auto",
                     borderRadius: 15,
                   }}
                 />
@@ -163,12 +163,12 @@ export function ListMobile({
                   variant="text"
                   height={18}
                   width={150}
-                  sx={{ fontSize: '1rem', borderRadius: 15 }}
+                  sx={{ fontSize: "1rem", borderRadius: 15 }}
                 />
               </ListItemButton>
             </div>
-          )
+          );
         })}
     </List>
-  )
+  );
 }

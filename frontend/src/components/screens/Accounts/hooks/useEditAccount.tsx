@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { IAccount } from '../../../../models/interfaces/IAccount'
+import { useState } from "react";
+import { IAccount } from "../../../../models/interfaces/IAccount";
 
 export function useEditAccount() {
   const [accountDataToEdit, setAccountDataToEdit] = useState<IAccount | null>(
-    null,
-  )
-  const [formModalOpened, setFormModalOpened] = useState<boolean>(false)
+    null
+  );
+  const [formModalOpened, setFormModalOpened] = useState<boolean>(false);
 
   function handleEditAccount(account: IAccount) {
-    if (!account) return
+    if (!account) return;
 
-    setAccountDataToEdit(account)
-    setFormModalOpened(true)
+    setAccountDataToEdit(account);
+    setFormModalOpened(true);
   }
 
   return {
@@ -20,5 +20,5 @@ export function useEditAccount() {
     formModalOpened,
     setFormModalOpened,
     setAccountDataToEdit,
-  }
+  };
 }

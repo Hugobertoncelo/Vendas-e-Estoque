@@ -2,54 +2,54 @@ import {
   CreateSupplierDTO,
   DeleteSupplierDTO,
   UpdateSupplierDTO,
-} from '../dtos/SupplierDTOS'
-import { IHttpClientProvider } from './../providers/HttpClientProvider/IHttpClientProvider'
+} from "../dtos/SupplierDTOS";
+import { IHttpClientProvider } from "./../providers/HttpClientProvider/IHttpClientProvider";
 
 export const suppliersService = {
   getAll(httpClientProvider: IHttpClientProvider) {
-    const params = {}
+    const params = {};
 
-    return httpClientProvider.get('/fornecedores/', {
+    return httpClientProvider.get("/fornecedores/", {
       params,
-    })
+    });
   },
 
   create(
     { name, cnpj, phone, email }: CreateSupplierDTO,
-    httpClientProvider: IHttpClientProvider,
+    httpClientProvider: IHttpClientProvider
   ) {
     const body = {
       name,
       cnpj,
       phone,
       email,
-    }
+    };
 
-    return httpClientProvider.post('/fornecedores', {
+    return httpClientProvider.post("/fornecedores", {
       ...body,
-    })
+    });
   },
 
   update(
     { name, cnpj, phone, email, _id: supplierId }: UpdateSupplierDTO,
-    httpClientProvider: IHttpClientProvider,
+    httpClientProvider: IHttpClientProvider
   ) {
     const body = {
       name,
       cnpj,
       phone,
       email,
-    }
+    };
 
     return httpClientProvider.put(`/fornecedores/${supplierId}`, {
       ...body,
-    })
+    });
   },
 
   delete(
     { idSupplier }: DeleteSupplierDTO,
-    httpClientProvider: IHttpClientProvider,
+    httpClientProvider: IHttpClientProvider
   ) {
-    return httpClientProvider.delete(`/fornecedores/${idSupplier}`)
+    return httpClientProvider.delete(`/fornecedores/${idSupplier}`);
   },
-}
+};

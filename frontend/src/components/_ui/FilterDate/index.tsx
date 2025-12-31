@@ -1,13 +1,13 @@
-import style from './FilterDate.module.scss'
-import { CustomTextField } from '../CustomTextField'
-import dayjs from 'dayjs'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { useFilterDate } from './hooks/useFilterDate'
+import style from "./FilterDate.module.scss";
+import { CustomTextField } from "../CustomTextField";
+import dayjs from "dayjs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useFilterDate } from "./hooks/useFilterDate";
 
 export function FilterDate() {
   const { errors, handleSubmit, onFilterByDate, setValue, endDate, startDate } =
-    useFilterDate()
+    useFilterDate();
 
   return (
     <form
@@ -20,12 +20,12 @@ export function FilterDate() {
         type="date"
         label="Data inicial"
         InputLabelProps={{ shrink: true }}
-        value={dayjs(startDate).format('YYYY-MM-DD')}
+        value={dayjs(startDate).format("YYYY-MM-DD")}
         onChange={(event) => {
           setValue(
-            'startDate',
-            dayjs(event.target.value).startOf('day').toISOString(),
-          )
+            "startDate",
+            dayjs(event.target.value).startOf("day").toISOString()
+          );
         }}
         error={!!errors.startDate}
       />
@@ -35,16 +35,16 @@ export function FilterDate() {
         type="date"
         label="Data final"
         sx={{
-          svg: { color: '#fff' },
-          input: { color: '#fff' },
+          svg: { color: "#fff" },
+          input: { color: "#fff" },
         }}
         InputLabelProps={{ shrink: true }}
-        value={dayjs(endDate).format('YYYY-MM-DD')}
+        value={dayjs(endDate).format("YYYY-MM-DD")}
         onChange={(event) => {
           setValue(
-            'endDate',
-            dayjs(event.target.value).endOf('day').toISOString(),
-          )
+            "endDate",
+            dayjs(event.target.value).endOf("day").toISOString()
+          );
         }}
         error={!!errors.endDate}
       />
@@ -53,5 +53,5 @@ export function FilterDate() {
         Filtrar
       </button>
     </form>
-  )
+  );
 }

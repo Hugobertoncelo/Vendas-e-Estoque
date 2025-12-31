@@ -1,13 +1,13 @@
-import style from './CreateAccount.module.scss'
-import Link from 'next/link'
+import style from "./CreateAccount.module.scss";
+import Link from "next/link";
 
-import { CustomTextField } from '../../_ui/CustomTextField'
-import { Loading } from '../../_ui/Loading'
-import { useCreateAccount } from './hooks/useCreateAccount'
+import { CustomTextField } from "../../_ui/CustomTextField";
+import { Loading } from "../../_ui/Loading";
+import { useCreateAccount } from "./hooks/useCreateAccount";
 
 export function CreateAccount() {
   const { errors, handleSubmit, isSubmitting, onCreateAccount, register } =
-    useCreateAccount()
+    useCreateAccount();
   return (
     <div className={style.createAccountContainer}>
       <h2>Criar uma nova conta</h2>
@@ -21,7 +21,7 @@ export function CreateAccount() {
           label="Nome"
           className={style.input}
           placeholder="Digite seu nome"
-          {...register('name')}
+          {...register("name")}
           error={!!errors?.name}
           helperText={errors?.name && errors?.name?.message}
         />
@@ -31,7 +31,7 @@ export function CreateAccount() {
           className={style.input}
           type="email"
           placeholder="Digite seu E-mail"
-          {...register('email')}
+          {...register("email")}
           error={!!errors?.email}
           helperText={errors?.email && errors?.email?.message}
         />
@@ -41,7 +41,7 @@ export function CreateAccount() {
           className={style.input}
           type="password"
           placeholder="Digite uma senha"
-          {...register('password')}
+          {...register("password")}
           error={!!errors?.password}
           helperText={errors?.password && errors?.password?.message}
         />
@@ -50,20 +50,20 @@ export function CreateAccount() {
           className={style.input}
           type="password"
           placeholder="Digite novamente a senha"
-          {...register('confirmPassword')}
+          {...register("confirmPassword")}
           error={!!errors?.confirmPassword}
           helperText={
             errors?.confirmPassword && errors?.confirmPassword?.message
           }
         />
         <button disabled={isSubmitting} type="submit">
-          {isSubmitting ? <Loading size={15} /> : 'Cadastrar'}
+          {isSubmitting ? <Loading size={15} /> : "Cadastrar"}
         </button>
       </form>
       <Link href="/login" className={style.loginAccountLink}>
         Entrar com conta existente
       </Link>
     </div>
-  )
+  );
 }
 // 161

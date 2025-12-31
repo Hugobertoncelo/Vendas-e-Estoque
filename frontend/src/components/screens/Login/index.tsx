@@ -1,12 +1,12 @@
-import style from './Login.module.scss'
-import Link from 'next/link'
-import { CustomTextField } from '../../_ui/CustomTextField'
-import { Loading } from '../../_ui/Loading'
-import { useFormAuth } from './hooks/useFormAuth'
+import style from "./Login.module.scss";
+import Link from "next/link";
+import { CustomTextField } from "../../_ui/CustomTextField";
+import { Loading } from "../../_ui/Loading";
+import { useFormAuth } from "./hooks/useFormAuth";
 
 export function Login() {
   const { errors, handleSubmit, isSubmitting, onLogin, register } =
-    useFormAuth()
+    useFormAuth();
 
   return (
     <div className={style.loginContainer}>
@@ -18,7 +18,7 @@ export function Login() {
           type="email"
           label="E-mail"
           placeholder="Digite seu E-mail"
-          {...register('email')}
+          {...register("email")}
           error={!!errors.email}
           helperText={errors?.email && errors?.email?.message}
         />
@@ -29,12 +29,12 @@ export function Login() {
           className={style.input}
           type="password"
           placeholder="Senha"
-          {...register('password')}
+          {...register("password")}
           error={!!errors.password}
           helperText={errors?.password && errors?.password?.message}
         />
         <button disabled={isSubmitting} type="submit">
-          {isSubmitting ? <Loading size={15} /> : 'Entrar'}
+          {isSubmitting ? <Loading size={15} /> : "Entrar"}
         </button>
       </form>
 
@@ -42,5 +42,5 @@ export function Login() {
         Criar nova conta
       </Link>
     </div>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import { CustomTextField } from '../CustomTextField'
-import style from './FilterByName.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { useFilterByName } from './hooks/useFilterByName'
+import { CustomTextField } from "../CustomTextField";
+import style from "./FilterByName.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useFilterByName } from "./hooks/useFilterByName";
 
 export function FilterByName() {
-  const { errors, handleSubmit, onFilterByName, register } = useFilterByName()
+  const { errors, handleSubmit, onFilterByName, register } = useFilterByName();
 
   return (
     <form
@@ -18,7 +18,7 @@ export function FilterByName() {
         label="Nome"
         placeholder="Digite o nome"
         className={style.input}
-        {...register('searchString')}
+        {...register("searchString")}
         error={!!errors.searchString}
       />
       <button type="submit">
@@ -26,5 +26,5 @@ export function FilterByName() {
         Filtrar
       </button>
     </form>
-  )
+  );
 }

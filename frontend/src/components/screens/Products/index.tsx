@@ -1,39 +1,39 @@
-import { HeaderPage } from '../../_ui/HeaderPage'
-import { ModalCreateNewProduct } from './ModalCreateNewProduct'
-import { TableComponent } from '../../_ui/TableComponent'
-import { IColumn } from '../../../models/interfaces/IColumn'
-import { useColumns } from './hooks/useColumns'
-import { FilterByName } from '../../_ui/FilterByName'
-import style from './Products.module.scss'
-import { ListMobile } from '../../_ui/ListMobile'
-import { useFieldsMobile } from './hooks/useFieldsMobile'
-import { useProductList } from '../../../hooks/useProductList'
-import { useDeleteProduct } from './hooks/useDeleteProduct'
-import { useEditProduct } from './hooks/useEditProduct'
+import { HeaderPage } from "../../_ui/HeaderPage";
+import { ModalCreateNewProduct } from "./ModalCreateNewProduct";
+import { TableComponent } from "../../_ui/TableComponent";
+import { IColumn } from "../../../models/interfaces/IColumn";
+import { useColumns } from "./hooks/useColumns";
+import { FilterByName } from "../../_ui/FilterByName";
+import style from "./Products.module.scss";
+import { ListMobile } from "../../_ui/ListMobile";
+import { useFieldsMobile } from "./hooks/useFieldsMobile";
+import { useProductList } from "../../../hooks/useProductList";
+import { useDeleteProduct } from "./hooks/useDeleteProduct";
+import { useEditProduct } from "./hooks/useEditProduct";
 
 export function Products() {
-  const { loadingProducts, products } = useProductList()
-  const { handleDeleteProduct } = useDeleteProduct()
+  const { loadingProducts, products } = useProductList();
+  const { handleDeleteProduct } = useDeleteProduct();
   const {
     formModalOpened,
     handleEditProduct,
     productDataToEdit,
     setFormModalOpened,
     setProductDataToEdit,
-  } = useEditProduct()
+  } = useEditProduct();
 
   const columns: IColumn[] = useColumns({
     handleEditProduct,
     handleDeleteProduct,
-  })
+  });
 
-  const fieldsMobile = useFieldsMobile()
+  const fieldsMobile = useFieldsMobile();
 
   return (
     <>
       <HeaderPage
         onClickFunction={() => {
-          setFormModalOpened(true)
+          setFormModalOpened(true);
         }}
         buttonText="Novo produto"
         InputFilter={<FilterByName />}
@@ -63,11 +63,11 @@ export function Products() {
           productDataToEdit={productDataToEdit}
           open={formModalOpened}
           handleClose={() => {
-            setFormModalOpened(false)
-            setProductDataToEdit(null)
+            setFormModalOpened(false);
+            setProductDataToEdit(null);
           }}
         />
       )}
     </>
-  )
+  );
 }

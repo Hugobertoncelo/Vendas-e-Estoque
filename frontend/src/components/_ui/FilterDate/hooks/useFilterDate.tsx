@@ -1,8 +1,8 @@
-import dayjs from 'dayjs'
-import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
-import { filterDateSchema, IFilterDate } from '../interfaces/IFilterData'
-import { zodResolver } from '@hookform/resolvers/zod'
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { filterDateSchema, IFilterDate } from "../interfaces/IFilterData";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function useFilterDate() {
   const {
@@ -12,15 +12,15 @@ export function useFilterDate() {
     formState: { errors },
   } = useForm<IFilterDate>({
     defaultValues: {
-      startDate: dayjs().startOf('month').toISOString(),
-      endDate: dayjs().endOf('month').toISOString(),
+      startDate: dayjs().startOf("month").toISOString(),
+      endDate: dayjs().endOf("month").toISOString(),
     },
     resolver: zodResolver(filterDateSchema),
-  })
+  });
 
-  const [startDate, endDate] = watch(['startDate', 'endDate'])
+  const [startDate, endDate] = watch(["startDate", "endDate"]);
 
-  const router = useRouter()
+  const router = useRouter();
 
   async function onFilterByDate({ startDate, endDate }: IFilterDate) {
     await router.push({
@@ -29,7 +29,7 @@ export function useFilterDate() {
         startDate,
         endDate,
       },
-    })
+    });
   }
 
   return {
@@ -39,5 +39,5 @@ export function useFilterDate() {
     errors,
     startDate,
     endDate,
-  }
+  };
 }

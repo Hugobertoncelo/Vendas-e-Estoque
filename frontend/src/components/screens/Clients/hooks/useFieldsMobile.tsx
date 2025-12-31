@@ -1,17 +1,17 @@
-import { IClient } from '../../../../models/interfaces/IClient'
-import { CellFunctionParams } from '../../../../models/interfaces/IColumn'
+import { IClient } from "../../../../models/interfaces/IClient";
+import { CellFunctionParams } from "../../../../models/interfaces/IColumn";
 
 export function useFieldsMobile() {
   return [
     {
-      field: 'name',
+      field: "name",
       valueFormatter: (params: CellFunctionParams<IClient>) =>
-        params.value || '--',
+        params.value || "--",
     },
     {
-      field: 'phone',
+      field: "phone",
       valueFormatter: (params: CellFunctionParams<IClient>) =>
-        params.value || '--',
+        params.value || "--",
     },
-  ]
+  ];
 }

@@ -1,13 +1,13 @@
-import style from './TableComponent.module.scss'
-import { Column } from './interfaces'
-import { Skeleton } from '@mui/material'
+import style from "./TableComponent.module.scss";
+import { Column } from "./interfaces";
+import { Skeleton } from "@mui/material";
 
 interface Props {
-  columns: Column[]
-  rows: any[]
-  loading: boolean
-  emptyText?: string
-  heightSkeleton?: number
+  columns: Column[];
+  rows: any[];
+  loading: boolean;
+  emptyText?: string;
+  heightSkeleton?: number;
 }
 
 export function TableComponent({
@@ -24,9 +24,9 @@ export function TableComponent({
           {columns?.map((column) => {
             return (
               <th key={column.field}>
-                <p>{column?.headerName || ''}</p>
+                <p>{column?.headerName || ""}</p>
               </th>
-            )
+            );
           })}
         </tr>
       </thead>
@@ -56,16 +56,16 @@ export function TableComponent({
                         data: row,
                       })}
                     </td>
-                  )
+                  );
                 })}
               </tr>
-            )
+            );
           })}
 
         {rows.length === 0 && !loading && (
           <tr className={style.emptyRow}>
             <td className={style.emptyCell} colSpan={columns.length}>
-              <p>{emptyText || 'Nenhum item encontrado'}</p>
+              <p>{emptyText || "Nenhum item encontrado"}</p>
             </td>
           </tr>
         )}
@@ -84,15 +84,15 @@ export function TableComponent({
                       <Skeleton
                         variant="rounded"
                         height={heightSkeleton}
-                        sx={{ fontSize: '1rem', borderRadius: 15 }}
+                        sx={{ fontSize: "1rem", borderRadius: 15 }}
                       />
                     </td>
-                  )
+                  );
                 })}
               </tr>
-            )
+            );
           })}
       </tbody>
     </table>
-  )
+  );
 }

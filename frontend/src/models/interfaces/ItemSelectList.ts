@@ -1,4 +1,4 @@
 export interface ItemSelectList {
-  text: string
-  value: string | number
+  text: string;
+  value: string | number;
 }

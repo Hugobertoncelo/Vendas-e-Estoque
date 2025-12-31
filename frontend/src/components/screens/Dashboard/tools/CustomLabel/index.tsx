@@ -1,4 +1,4 @@
-import { format } from '../../../../../utils/format'
+import { format } from "../../../../../utils/format";
 
 export function CustomLabel({
   x,
@@ -11,7 +11,7 @@ export function CustomLabel({
   return (
     <text
       style={{
-        fontWeight: '700',
+        fontWeight: "700",
       }}
       x={x + width / 2}
       y={y}
@@ -23,5 +23,5 @@ export function CustomLabel({
     >
       {formatarReal ? format.formatarReal(value) : value}
     </text>
-  )
+  );
 }

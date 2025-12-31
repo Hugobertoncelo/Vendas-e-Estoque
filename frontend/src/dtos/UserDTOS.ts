@@ -1,11 +1,11 @@
 export interface LoginDTO {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 export interface RegisterUserDTO {
-  name: string
-  email: string
-  password: string
-  confirmPassword: string
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }

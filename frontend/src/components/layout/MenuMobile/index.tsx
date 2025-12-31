@@ -1,12 +1,12 @@
-import style from './MenuMobile.module.scss'
-import { UserOptions } from '../UserOptions'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { MouseEventHandler } from 'react'
+import style from "./MenuMobile.module.scss";
+import { UserOptions } from "../UserOptions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { MouseEventHandler } from "react";
 
 interface Props {
-  handleOpenMenuOptions: MouseEventHandler<HTMLButtonElement>
-  menuOptionsOpened: boolean
+  handleOpenMenuOptions: MouseEventHandler<HTMLButtonElement>;
+  menuOptionsOpened: boolean;
 }
 
 export function MenuMobile({
@@ -27,10 +27,10 @@ export function MenuMobile({
 
       <UserOptions
         position={{
-          horizontal: 'left',
-          vertical: 'bottom',
+          horizontal: "left",
+          vertical: "bottom",
         }}
       />
     </header>
-  )
+  );
 }

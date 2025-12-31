@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import { IProduct } from '../../../../models/interfaces/IProduct'
+import { useState } from "react";
+import { IProduct } from "../../../../models/interfaces/IProduct";
 
 export function useEditProduct() {
-  const [formModalOpened, setFormModalOpened] = useState<boolean>(false)
+  const [formModalOpened, setFormModalOpened] = useState<boolean>(false);
   const [productDataToEdit, setProductDataToEdit] = useState<IProduct | null>(
-    null,
-  )
+    null
+  );
 
   function handleEditProduct(product: IProduct) {
-    setProductDataToEdit(product)
-    setFormModalOpened(true)
+    setProductDataToEdit(product);
+    setFormModalOpened(true);
   }
 
   return {
@@ -18,5 +18,5 @@ export function useEditProduct() {
     setFormModalOpened,
     productDataToEdit,
     setProductDataToEdit,
-  }
+  };
 }

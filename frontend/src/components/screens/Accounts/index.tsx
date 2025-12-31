@@ -1,38 +1,38 @@
-import { HeaderPage } from '../../_ui/HeaderPage'
-import { ModalCreateNewAccount } from './ModalCreateNewAccount'
-import { TableComponent } from '../../_ui/TableComponent'
-import { IColumn } from '../../../models/interfaces/IColumn'
-import { useColumns } from './hooks/useColumns'
-import { FilterByAccountType } from '../../_ui/FilterByAccountType'
-import style from './Accounts.module.scss'
-import { ListMobile } from '../../_ui/ListMobile'
-import { useFieldsMobile } from './hooks/useFieldsMobile'
-import { useAccountList } from '../../../hooks/useAccountList'
-import { useDeleteAccount } from './hooks/useDeleteAccount'
-import { useEditAccount } from './hooks/useEditAccount'
+import { HeaderPage } from "../../_ui/HeaderPage";
+import { ModalCreateNewAccount } from "./ModalCreateNewAccount";
+import { TableComponent } from "../../_ui/TableComponent";
+import { IColumn } from "../../../models/interfaces/IColumn";
+import { useColumns } from "./hooks/useColumns";
+import { FilterByAccountType } from "../../_ui/FilterByAccountType";
+import style from "./Accounts.module.scss";
+import { ListMobile } from "../../_ui/ListMobile";
+import { useFieldsMobile } from "./hooks/useFieldsMobile";
+import { useAccountList } from "../../../hooks/useAccountList";
+import { useDeleteAccount } from "./hooks/useDeleteAccount";
+import { useEditAccount } from "./hooks/useEditAccount";
 
 export function Accounts() {
-  const fieldsMobile = useFieldsMobile()
-  const { accounts, loadingAccounts } = useAccountList({ otherFilters: null })
-  const { handleDeleteAccount } = useDeleteAccount()
+  const fieldsMobile = useFieldsMobile();
+  const { accounts, loadingAccounts } = useAccountList({ otherFilters: null });
+  const { handleDeleteAccount } = useDeleteAccount();
   const {
     handleEditAccount,
     accountDataToEdit,
     formModalOpened,
     setFormModalOpened,
     setAccountDataToEdit,
-  } = useEditAccount()
+  } = useEditAccount();
 
   const columns: IColumn[] = useColumns({
     handleEditAccount,
     handleDeleteAccount,
-  })
+  });
 
   return (
     <>
       <HeaderPage
         onClickFunction={() => {
-          setFormModalOpened(true)
+          setFormModalOpened(true);
         }}
         buttonText="Nova conta"
         InputFilter={<FilterByAccountType />}
@@ -63,11 +63,11 @@ export function Accounts() {
           accountDataToEdit={accountDataToEdit}
           open={formModalOpened}
           handleClose={() => {
-            setFormModalOpened(false)
-            setAccountDataToEdit(null)
+            setFormModalOpened(false);
+            setAccountDataToEdit(null);
           }}
         />
       )}
     </>
-  )
+  );
 }

@@ -1,16 +1,16 @@
-import style from './Card.module.scss'
-import { useRouter } from 'next/router'
-import { CSSProperties, ReactNode } from 'react'
+import style from "./Card.module.scss";
+import { useRouter } from "next/router";
+import { CSSProperties, ReactNode } from "react";
 
 type Props = {
-  title: string
-  value: string | number
-  icon: ReactNode
-  route: string | null
-  className: string
-  query?: unknown
-  customStyle?: CSSProperties
-}
+  title: string;
+  value: string | number;
+  icon: ReactNode;
+  route: string | null;
+  className: string;
+  query?: unknown;
+  customStyle?: CSSProperties;
+};
 
 export function Card({
   title,
@@ -21,10 +21,10 @@ export function Card({
   query,
   customStyle,
 }: Props) {
-  const router = useRouter()
+  const router = useRouter();
 
   function handleClickCard(routeParams: { pathname: string; query?: any }) {
-    if (route) router.push(routeParams)
+    if (route) router.push(routeParams);
   }
 
   return (
@@ -34,7 +34,7 @@ export function Card({
         handleClickCard({
           pathname: `/${route}`,
           ...(query ? { query } : {}),
-        })
+        });
       }}
       style={customStyle ?? customStyle}
     >
@@ -46,5 +46,5 @@ export function Card({
 
       <span>{value || 0}</span>
     </li>
-  )
+  );
 }

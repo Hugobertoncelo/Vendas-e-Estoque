@@ -1,18 +1,18 @@
-import { HeaderPage } from '../../_ui/HeaderPage'
-import { ModalCreateNewClient } from './ModalCreateNewClient'
-import { TableComponent } from '../../_ui/TableComponent'
-import { IColumn } from '../../../models/interfaces/IColumn'
-import { useColumns } from './hooks/useColumns'
-import style from './Clients.module.scss'
-import { ListMobile } from '../../_ui/ListMobile'
-import { useFieldsMobile } from './hooks/useFieldsMobile'
-import { FilterByName } from '../../_ui/FilterByName'
-import { useClientList } from '../../../hooks/useClientList'
-import { useDeleteClient } from './hooks/useDeleteClient'
-import { useEditClient } from './hooks/useEditClient'
+import { HeaderPage } from "../../_ui/HeaderPage";
+import { ModalCreateNewClient } from "./ModalCreateNewClient";
+import { TableComponent } from "../../_ui/TableComponent";
+import { IColumn } from "../../../models/interfaces/IColumn";
+import { useColumns } from "./hooks/useColumns";
+import style from "./Clients.module.scss";
+import { ListMobile } from "../../_ui/ListMobile";
+import { useFieldsMobile } from "./hooks/useFieldsMobile";
+import { FilterByName } from "../../_ui/FilterByName";
+import { useClientList } from "../../../hooks/useClientList";
+import { useDeleteClient } from "./hooks/useDeleteClient";
+import { useEditClient } from "./hooks/useEditClient";
 
 export function Clients() {
-  const { handleDeleteClient } = useDeleteClient()
+  const { handleDeleteClient } = useDeleteClient();
 
   const {
     clientDataToEdit,
@@ -20,22 +20,22 @@ export function Clients() {
     handleEditClient,
     setClientDataToEdit,
     setFormModalOpened,
-  } = useEditClient()
+  } = useEditClient();
 
   const columns: IColumn[] = useColumns({
     handleEditClient,
     handleDeleteClient,
-  })
+  });
 
-  const fieldsMobile = useFieldsMobile()
+  const fieldsMobile = useFieldsMobile();
 
-  const { clients, loadingClients } = useClientList()
+  const { clients, loadingClients } = useClientList();
 
   return (
     <>
       <HeaderPage
         onClickFunction={() => {
-          setFormModalOpened(true)
+          setFormModalOpened(true);
         }}
         buttonText="Novo cliente"
         InputFilter={<FilterByName />}
@@ -66,11 +66,11 @@ export function Clients() {
           clientDataToEdit={clientDataToEdit}
           open={formModalOpened}
           handleClose={() => {
-            setFormModalOpened(false)
-            setClientDataToEdit(null)
+            setFormModalOpened(false);
+            setClientDataToEdit(null);
           }}
         />
       )}
     </>
-  )
+  );
 }

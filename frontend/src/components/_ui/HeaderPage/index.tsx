@@ -1,13 +1,13 @@
-import { ReactNode } from 'react'
-import style from './HeaderPage.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { ReactNode } from "react";
+import style from "./HeaderPage.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
-  buttonText: string
-  onClickFunction: () => void
-  InputFilter?: ReactNode
-}
+  buttonText: string;
+  onClickFunction: () => void;
+  InputFilter?: ReactNode;
+};
 
 export function HeaderPage({
   buttonText,
@@ -20,9 +20,9 @@ export function HeaderPage({
       <div className={style.buttonsContainer}>
         <button className={style.createNewButton} onClick={onClickFunction}>
           <FontAwesomeIcon className={style.icon} icon={faPlus} />
-          {buttonText || 'Cadastrar'}
+          {buttonText || "Cadastrar"}
         </button>
       </div>
     </header>
-  )
+  );
 }

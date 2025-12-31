@@ -1,7 +1,7 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const filterByNameSchema = z.object({
   searchString: z.string(),
-})
+});
 
-export type IFilterByName = z.infer<typeof filterByNameSchema>
+export type IFilterByName = z.infer<typeof filterByNameSchema>;

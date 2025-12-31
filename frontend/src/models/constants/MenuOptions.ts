@@ -5,44 +5,44 @@ import {
   faFileInvoiceDollar,
   faTruckField,
   faUsers,
-} from '@fortawesome/free-solid-svg-icons'
-import { IMenuOption } from '../interfaces/IMenuOption'
+} from "@fortawesome/free-solid-svg-icons";
+import { IMenuOption } from "../interfaces/IMenuOption";
 
 export const menuOptions: IMenuOption[] = [
   {
-    title: 'Dashboard',
-    link: '/',
+    title: "Dashboard",
+    link: "/",
     icon: faChartSimple,
-    name: 'dashboard',
+    name: "dashboard",
   },
   {
-    title: 'Vendas',
-    link: '/vendas',
+    title: "Vendas",
+    link: "/vendas",
     icon: faCartPlus,
-    name: 'vendas',
+    name: "vendas",
   },
   {
-    title: 'Produtos',
-    link: '/produtos',
+    title: "Produtos",
+    link: "/produtos",
     icon: faBox,
-    name: 'produtos',
+    name: "produtos",
   },
   {
-    title: 'Clientes',
-    link: '/clientes',
+    title: "Clientes",
+    link: "/clientes",
     icon: faUsers,
-    name: 'clientes',
+    name: "clientes",
   },
   {
-    title: 'Contas',
-    link: '/contas',
+    title: "Contas",
+    link: "/contas",
     icon: faFileInvoiceDollar,
-    name: 'contas',
+    name: "contas",
   },
   {
-    title: 'Fornecedores',
-    link: '/fornecedores',
+    title: "Fornecedores",
+    link: "/fornecedores",
     icon: faTruckField,
-    name: 'fornecedores',
+    name: "fornecedores",
   },
-]
+];

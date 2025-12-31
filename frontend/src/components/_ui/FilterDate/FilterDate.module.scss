@@ -18,14 +18,14 @@
     background: $primary-color;
     color: $white-color;
     box-shadow: 1px 3px 4px rgba(0 0 0 / 0.35);
-    
+
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 0;
-    
+
     transition: filter 0.2s;
     cursor: pointer;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,7 @@
   }
 }
 
-@media (max-width: 880px)  {
+@media (max-width: 880px) {
   .inputsContainer {
     flex-direction: column;
 

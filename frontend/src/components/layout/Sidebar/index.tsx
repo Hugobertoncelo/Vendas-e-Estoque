@@ -1,19 +1,19 @@
-import { useRouter } from 'next/router'
-import style from './Sidebar.module.scss'
-import { menuOptions } from '../../../models/constants/MenuOptions'
-import Link from 'next/link'
-import { UserOptions } from '../UserOptions'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRouter } from "next/router";
+import style from "./Sidebar.module.scss";
+import { menuOptions } from "../../../models/constants/MenuOptions";
+import Link from "next/link";
+import { UserOptions } from "../UserOptions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function Sidebar() {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <aside className={style.sidebarContainer}>
       <UserOptions
         position={{
-          horizontal: 'right',
-          vertical: 'bottom',
+          horizontal: "right",
+          vertical: "bottom",
         }}
       />
 
@@ -22,12 +22,12 @@ export function Sidebar() {
           return (
             <Link
               key={option.name}
-              href={disabled ? '/404' : option.link}
+              href={disabled ? "/404" : option.link}
               title={option.name}
             >
               <li
                 style={
-                  disabled ? { opacity: '0.4', cursor: 'not-allowed' } : {}
+                  disabled ? { opacity: "0.4", cursor: "not-allowed" } : {}
                 }
                 className={
                   router.pathname === option.link ? style.activeMenu : undefined
@@ -41,9 +41,9 @@ export function Sidebar() {
                 </>
               </li>
             </Link>
-          )
+          );
         })}
       </ul>
     </aside>
-  )
+  );
 }

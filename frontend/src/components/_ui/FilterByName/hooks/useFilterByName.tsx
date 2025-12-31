@@ -1,20 +1,20 @@
-import { useRouter } from 'next/router'
-import { useForm } from 'react-hook-form'
-import { filterByNameSchema, IFilterByName } from '../interfaces/IFilterByName'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { filterByNameSchema, IFilterByName } from "../interfaces/IFilterByName";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function useFilterByName() {
-  const router = useRouter()
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFilterByName>({
     defaultValues: {
-      searchString: '',
+      searchString: "",
     },
     resolver: zodResolver(filterByNameSchema),
-  })
+  });
 
   async function onFilterByName({ searchString }: IFilterByName) {
     if (searchString) {
@@ -23,12 +23,12 @@ export function useFilterByName() {
         query: {
           searchString,
         },
-      })
+      });
 
-      return
+      return;
     }
 
-    await router.push(router.route)
+    await router.push(router.route);
   }
 
   return {
@@ -36,5 +36,5 @@ export function useFilterByName() {
     onFilterByName,
     errors,
     handleSubmit,
-  }
+  };
 }

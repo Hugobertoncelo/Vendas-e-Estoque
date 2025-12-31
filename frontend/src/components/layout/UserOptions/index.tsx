@@ -1,23 +1,23 @@
-import { Popover } from '@mui/material'
-import style from './UserOptions.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Popover } from "@mui/material";
+import style from "./UserOptions.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
   faEnvelope,
   faUser,
-} from '@fortawesome/free-solid-svg-icons'
-import { IPosition } from './interfaces/IPosition'
-import { useUserOptions } from './hooks/useUserOptions'
+} from "@fortawesome/free-solid-svg-icons";
+import { IPosition } from "./interfaces/IPosition";
+import { useUserOptions } from "./hooks/useUserOptions";
 
 export interface UserInfo {
-  name: string
-  email: string
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
 
 type Props = {
-  position: IPosition
-}
+  position: IPosition;
+};
 
 export function UserOptions({ position }: Props) {
   const {
@@ -26,14 +26,14 @@ export function UserOptions({ position }: Props) {
     setUserInfoAnchorEl,
     userInfo,
     userInfoAnchorEl,
-  } = useUserOptions({ position })
+  } = useUserOptions({ position });
 
   return (
     <>
       <button
         type="button"
         onClick={(event) => {
-          setUserInfoAnchorEl(event?.currentTarget)
+          setUserInfoAnchorEl(event?.currentTarget);
         }}
         className={style.userButton}
       >
@@ -42,15 +42,15 @@ export function UserOptions({ position }: Props) {
 
       <Popover
         onClose={() => {
-          setUserInfoAnchorEl(null)
+          setUserInfoAnchorEl(null);
         }}
         anchorEl={userInfoAnchorEl}
         open={!!userInfoAnchorEl}
         PaperProps={{
           sx: {
-            borderRadius: '20px',
-            backgroundColor: '#323238',
-            color: '#c4c4cc',
+            borderRadius: "20px",
+            backgroundColor: "#323238",
+            color: "#c4c4cc",
             ...getPosition(),
           },
         }}
@@ -58,12 +58,12 @@ export function UserOptions({ position }: Props) {
         <div className={style.userInfoContainer}>
           <p>
             <FontAwesomeIcon className={style.icon} icon={faUser} />
-            {userInfo?.name || '--'}
+            {userInfo?.name || "--"}
           </p>
           <p>
-            {' '}
+            {" "}
             <FontAwesomeIcon className={style.icon} icon={faEnvelope} />
-            {userInfo?.email || '--'}
+            {userInfo?.email || "--"}
           </p>
           <>
             <button
@@ -79,5 +79,5 @@ export function UserOptions({ position }: Props) {
         </div>
       </Popover>
     </>
-  )
+  );
 }
