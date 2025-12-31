@@ -20,7 +20,14 @@ export default async function handler(req, res) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
     const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
     const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`;
-    await mongoose.connect(mongoURL, { bufferCommands: false });
+    try {
+      await mongoose.connect(mongoURL, { bufferCommands: false });
+    } catch (err) {
+      console.error("[MONGOOSE ERROR][HANDLER] Falha ao conectar:", err);
+      return res
+        .status(500)
+        .json({ error: "Erro ao conectar ao MongoDB", details: err.message });
+    }
   }
   return app(req, res);
 }
