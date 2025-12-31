@@ -19,6 +19,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@mui/material": "^5.13.2",
     "@mui/x-charts": "^7.22.2",
+    "@vercel/node": "^5.5.16",
     "axios": "^1.4.0",
     "dayjs": "^1.11.8",
     "next": "12.2.3",
