@@ -13,16 +13,4 @@ const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol
 
 console.log("[DEBUG] String de conexão MongoDB:", mongoURL);
 
-mongoose.connect(mongoURL, { bufferCommands: false });
-mongoose.connection
-  .on("error", (err) => {
-    console.error(
-      "[MONGOOSE ERROR] Erro ao conectar com o banco de dados:",
-      err
-    );
-  })
-  .once("open", () => {
-    console.log("Conexão com o banco de dados estabelecida com sucesso");
-  });
-
 export default mongoose;
