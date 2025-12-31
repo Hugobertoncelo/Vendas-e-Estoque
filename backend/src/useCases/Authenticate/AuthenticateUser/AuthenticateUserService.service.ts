@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 import { IUsersRepository } from "../../../repositories/Users/IUsersRepository";
 import { inject, injectable } from "tsyringe";
 import { compare } from "bcrypt";
-import { sign } from "jsonwebtoken";
+import { sign, SignOptions } from "jsonwebtoken";
 import { Types } from "mongoose";
 import { AppError } from "../../../errors/AppError";
 import auth from "../../../config/auth";
@@ -66,15 +66,21 @@ export class AuthenticateUserService {
       );
     }
 
-    const token = sign({ sub: user._id.toString() }, secretToken, {
+    const tokenOptions: SignOptions = {
       subject: user._id.toString(),
       expiresIn: expiresInToken,
-    });
+    };
+    const token = sign({ sub: user._id.toString() }, secretToken, tokenOptions);
 
-    const refreshToken = sign({ email }, secretRefreshToken, {
+    const refreshTokenOptions: SignOptions = {
       subject: user._id.toString(),
       expiresIn: expiresInRefreshToken,
-    });
+    };
+    const refreshToken = sign(
+      { email },
+      secretRefreshToken,
+      refreshTokenOptions
+    );
 
     const refreshTokenExpiresDate = this.dateProvider.addDays(
       expiresRefreshTokenDays
