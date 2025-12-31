@@ -9,17 +9,12 @@ interface Props {
   menuOptionsOpened: boolean;
 }
 
-export function MenuMobile({
-  handleOpenMenuOptions,
-  menuOptionsOpened,
-}: Props) {
+export function MenuMobile({ handleOpenMenuOptions, menuOptionsOpened }: Props) {
   return (
     <header className={style.headerMenu}>
       <button
         onClick={handleOpenMenuOptions}
-        className={`${style.menuOptionsButton} ${
-          menuOptionsOpened && style.menuOpened
-        }`}
+        className={`${style.menuOptionsButton} ${menuOptionsOpened && style.menuOpened}`}
         type="button"
       >
         <FontAwesomeIcon icon={faBars} className={style.icon} />

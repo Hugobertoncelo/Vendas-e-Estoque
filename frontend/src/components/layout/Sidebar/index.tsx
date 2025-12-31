@@ -20,23 +20,13 @@ export function Sidebar() {
       <ul className={style.menuList}>
         {menuOptions.map(({ disabled, icon, title, ...option }) => {
           return (
-            <Link
-              key={option.name}
-              href={disabled ? "/404" : option.link}
-              title={option.name}
-            >
+            <Link key={option.name} href={disabled ? "/404" : option.link} title={option.name}>
               <li
-                style={
-                  disabled ? { opacity: "0.4", cursor: "not-allowed" } : {}
-                }
-                className={
-                  router.pathname === option.link ? style.activeMenu : undefined
-                }
+                style={disabled ? { opacity: "0.4", cursor: "not-allowed" } : {}}
+                className={router.pathname === option.link ? style.activeMenu : undefined}
               >
                 <>
-                  {icon && (
-                    <FontAwesomeIcon className={style.icon} icon={icon} />
-                  )}
+                  {icon && <FontAwesomeIcon className={style.icon} icon={icon} />}
                   <span>{title}</span>
                 </>
               </li>

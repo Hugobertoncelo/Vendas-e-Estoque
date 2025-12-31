@@ -7,8 +7,7 @@ export function useFieldsMobile() {
     {
       headerName: "Nome do produto",
       field: "name",
-      valueFormatter: (params: CellFunctionParams<IProduct>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IProduct>) => params.value || "--",
     },
     {
       headerName: "Valor",

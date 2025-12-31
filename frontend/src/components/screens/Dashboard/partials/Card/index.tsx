@@ -12,15 +12,7 @@ type Props = {
   customStyle?: CSSProperties;
 };
 
-export function Card({
-  title,
-  value,
-  icon,
-  route,
-  className,
-  query,
-  customStyle,
-}: Props) {
+export function Card({ title, value, icon, route, className, query, customStyle }: Props) {
   const router = useRouter();
 
   function handleClickCard(routeParams: { pathname: string; query?: any }) {

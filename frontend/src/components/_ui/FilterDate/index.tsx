@@ -6,14 +6,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useFilterDate } from "./hooks/useFilterDate";
 
 export function FilterDate() {
-  const { errors, handleSubmit, onFilterByDate, setValue, endDate, startDate } =
-    useFilterDate();
+  const { errors, handleSubmit, onFilterByDate, setValue, endDate, startDate } = useFilterDate();
 
   return (
-    <form
-      onSubmit={handleSubmit(onFilterByDate)}
-      className={style.inputsContainer}
-    >
+    <form onSubmit={handleSubmit(onFilterByDate)} className={style.inputsContainer}>
       <CustomTextField
         size="small"
         className={style.input}
@@ -22,10 +18,7 @@ export function FilterDate() {
         InputLabelProps={{ shrink: true }}
         value={dayjs(startDate).format("YYYY-MM-DD")}
         onChange={(event) => {
-          setValue(
-            "startDate",
-            dayjs(event.target.value).startOf("day").toISOString()
-          );
+          setValue("startDate", dayjs(event.target.value).startOf("day").toISOString());
         }}
         error={!!errors.startDate}
       />
@@ -41,10 +34,7 @@ export function FilterDate() {
         InputLabelProps={{ shrink: true }}
         value={dayjs(endDate).format("YYYY-MM-DD")}
         onChange={(event) => {
-          setValue(
-            "endDate",
-            dayjs(event.target.value).endOf("day").toISOString()
-          );
+          setValue("endDate", dayjs(event.target.value).endOf("day").toISOString());
         }}
         error={!!errors.endDate}
       />

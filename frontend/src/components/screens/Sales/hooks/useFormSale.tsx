@@ -16,15 +16,10 @@ type Props = {
   saleToEditData: ISale | null;
   productsList: IProduct[];
 };
-export function useFormSale({
-  handleClose,
-  saleToEditData,
-  productsList,
-}: Props) {
+export function useFormSale({ handleClose, saleToEditData, productsList }: Props) {
   const router = useRouter();
 
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
 
   const {
     register,
@@ -111,9 +106,7 @@ export function useFormSale({
     const newProduct = productsList.find((prodItem) => prodItem?._id === value);
     if (!newProduct) return;
 
-    const alreadExistProductInList = !!products.find(
-      (product) => product?._id === newProduct?._id
-    );
+    const alreadExistProductInList = !!products.find((product) => product?._id === newProduct?._id);
     if (alreadExistProductInList) return;
 
     newProduct.amount = 1;
@@ -122,7 +115,7 @@ export function useFormSale({
 
   function handleChangeProduct(
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    index: number
+    index: number,
   ) {
     const { name, value } = event.target;
 
@@ -166,12 +159,10 @@ export function useFormSale({
         .then(({ data: { items } }) => {
           const defaultProducts = items;
 
-          const defaultProductsList = defaultProducts.map(
-            (product: IProduct) => ({
-              ...product,
-              amount: 1,
-            })
-          );
+          const defaultProductsList = defaultProducts.map((product: IProduct) => ({
+            ...product,
+            amount: 1,
+          }));
 
           setValue("products", defaultProductsList);
         })

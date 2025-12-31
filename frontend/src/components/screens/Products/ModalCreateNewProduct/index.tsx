@@ -13,11 +13,7 @@ interface Props {
   handleClose: () => void;
 }
 
-export function ModalCreateNewProduct({
-  open,
-  handleClose,
-  productDataToEdit,
-}: Props) {
+export function ModalCreateNewProduct({ open, handleClose, productDataToEdit }: Props) {
   const {
     onCreateNewProduct,
     onEditProduct,
@@ -38,9 +34,7 @@ export function ModalCreateNewProduct({
     <ModalLayout
       open={open}
       handleClose={handleClose}
-      onSubmit={handleSubmit(
-        productDataToEdit ? onEditProduct : onCreateNewProduct
-      )}
+      onSubmit={handleSubmit(productDataToEdit ? onEditProduct : onCreateNewProduct)}
       title="Cadastro de produto"
       submitButtonText="Cadastrar"
       loading={isSubmitting}
@@ -103,8 +97,8 @@ export function ModalCreateNewProduct({
             }}
           >
             <Typography sx={{ p: 2 }} className={style.popover}>
-              Ao definir um produto como padrão, ele será selecionado
-              automaticamente no momento de realizar uma venda.
+              Ao definir um produto como padrão, ele será selecionado automaticamente no momento de
+              realizar uma venda.
             </Typography>
           </Popover>
         </div>

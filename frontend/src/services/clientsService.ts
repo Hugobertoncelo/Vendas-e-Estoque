@@ -7,10 +7,7 @@ import {
 import { IHttpClientProvider } from "./../providers/HttpClientProvider/IHttpClientProvider";
 
 export const clientsService = {
-  getAll(
-    { searchString }: GetAllClientsDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  getAll({ searchString }: GetAllClientsDTO, httpClientProvider: IHttpClientProvider) {
     const params = {
       ...(searchString ? { searchString } : {}),
     };
@@ -20,10 +17,7 @@ export const clientsService = {
     });
   },
 
-  create(
-    { name, cpf, phone, email }: CreateClientDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  create({ name, cpf, phone, email }: CreateClientDTO, httpClientProvider: IHttpClientProvider) {
     const body = {
       name,
       cpf,
@@ -38,7 +32,7 @@ export const clientsService = {
 
   update(
     { _id: idClient, name, email, phone, cpf }: UpdateClientDTO,
-    httpClientProvider: IHttpClientProvider
+    httpClientProvider: IHttpClientProvider,
   ) {
     const body = {
       name,
@@ -52,10 +46,7 @@ export const clientsService = {
     });
   },
 
-  delete(
-    { idClient }: DeleteClientDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  delete({ idClient }: DeleteClientDTO, httpClientProvider: IHttpClientProvider) {
     return httpClientProvider.delete(`/clientes/${idClient}`);
   },
 };

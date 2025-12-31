@@ -10,13 +10,7 @@ interface Props {
   heightSkeleton?: number;
 }
 
-export function TableComponent({
-  columns,
-  rows,
-  loading,
-  emptyText,
-  heightSkeleton = 30,
-}: Props) {
+export function TableComponent({ columns, rows, loading, emptyText, heightSkeleton = 30 }: Props) {
   return (
     <table style={loading ? { opacity: 0.5 } : {}} className={style.table}>
       <thead>
@@ -76,11 +70,7 @@ export function TableComponent({
               <tr key={item}>
                 {columns.map((column) => {
                   return (
-                    <td
-                      className={style.skeleton}
-                      key={column.field}
-                      style={{ flex: 1 }}
-                    >
+                    <td className={style.skeleton} key={column.field} style={{ flex: 1 }}>
                       <Skeleton
                         variant="rounded"
                         height={heightSkeleton}

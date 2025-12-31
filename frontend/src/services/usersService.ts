@@ -14,10 +14,7 @@ export const usersService = {
     return token;
   },
 
-  login(
-    { email, password }: LoginDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  login({ email, password }: LoginDTO, httpClientProvider: IHttpClientProvider) {
     const body = { email, password };
 
     return httpClientProvider.post("/signIn", {
@@ -27,7 +24,7 @@ export const usersService = {
 
   register(
     { name, email, password, confirmPassword }: RegisterUserDTO,
-    httpClientProvider: IHttpClientProvider
+    httpClientProvider: IHttpClientProvider,
   ) {
     const body = { name, email, password, confirmPassword };
 
@@ -100,10 +97,7 @@ export const usersService = {
     return null;
   },
 
-  async updateRefreshTokenService(
-    token: string | null,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  async updateRefreshTokenService(token: string | null, httpClientProvider: IHttpClientProvider) {
     return httpClientProvider.post("/refreshToken", {
       token,
     });

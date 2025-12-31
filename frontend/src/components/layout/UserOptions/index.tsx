@@ -1,11 +1,7 @@
 import { Popover } from "@mui/material";
 import style from "./UserOptions.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faEnvelope,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
 import { IPosition } from "./interfaces/IPosition";
 import { useUserOptions } from "./hooks/useUserOptions";
 
@@ -20,13 +16,8 @@ type Props = {
 };
 
 export function UserOptions({ position }: Props) {
-  const {
-    getPosition,
-    handleLogout,
-    setUserInfoAnchorEl,
-    userInfo,
-    userInfoAnchorEl,
-  } = useUserOptions({ position });
+  const { getPosition, handleLogout, setUserInfoAnchorEl, userInfo, userInfoAnchorEl } =
+    useUserOptions({ position });
 
   return (
     <>

@@ -9,7 +9,7 @@ export const format = {
   },
   formatarFormaDePagamento(paymentType: string) {
     const paymentFormated = paymentTypeList.find(
-      (paymentItem) => paymentItem.value === paymentType
+      (paymentItem) => paymentItem.value === paymentType,
     );
     return paymentFormated?.text;
   },

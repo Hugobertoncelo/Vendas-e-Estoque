@@ -17,8 +17,7 @@ type Props = {
 export function useFormClient({ clientDataToEdit, handleClose }: Props) {
   const router = useRouter();
 
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
   const {
     register,
     handleSubmit,
@@ -89,8 +88,7 @@ export function useFormClient({ clientDataToEdit, handleClose }: Props) {
           ...alertNotifyConfigs,
           open: true,
           type: ALERT_NOTIFY_TYPE.ERROR,
-          text:
-            "Erro ao tentar atualizar dados do cliente " + `(${err?.message})`,
+          text: "Erro ao tentar atualizar dados do cliente " + `(${err?.message})`,
         });
       });
   }

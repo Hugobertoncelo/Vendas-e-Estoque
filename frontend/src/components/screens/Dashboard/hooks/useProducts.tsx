@@ -4,9 +4,7 @@ import { ISale } from "../../../../models/interfaces/ISale";
 export function useProducts(sales: ISale[]) {
   return sales.reduce((acc: IProduct[], sale) => {
     sale.products.forEach((product) => {
-      const productAlreadyExist = !!acc.find(
-        (accProduct) => accProduct._id === product._id
-      );
+      const productAlreadyExist = !!acc.find((accProduct) => accProduct._id === product._id);
       if (!productAlreadyExist) {
         acc.push({
           ...product,

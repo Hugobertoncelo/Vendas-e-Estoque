@@ -19,14 +19,13 @@ interface IAlertContext {
 export const AlertContext = createContext({} as IAlertContext);
 
 export function AlertContextComponent({ children }: Props) {
-  const [alertDialogConfirmConfigs, setAlertDialogConfirmConfigs] =
-    useState<IAlertDialogConfirm>({
-      open: false,
-      title: "",
-      text: "",
-      handleClose: onCloseAlertDialogConfirm,
-      onClickAgree: () => undefined,
-    });
+  const [alertDialogConfirmConfigs, setAlertDialogConfirmConfigs] = useState<IAlertDialogConfirm>({
+    open: false,
+    title: "",
+    text: "",
+    handleClose: onCloseAlertDialogConfirm,
+    onClickAgree: () => undefined,
+  });
 
   const [alertNotifyConfigs, setAlertNotifyConfigs] = useState<IAlertNotify>({
     open: false,

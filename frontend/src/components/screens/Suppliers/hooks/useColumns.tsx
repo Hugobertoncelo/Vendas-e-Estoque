@@ -1,7 +1,4 @@
-import {
-  IColumn,
-  CellFunctionParams,
-} from "../../../../models/interfaces/IColumn";
+import { IColumn, CellFunctionParams } from "../../../../models/interfaces/IColumn";
 import style from "../Suppliers.module.scss";
 import { ISupplier } from "../../../../models/interfaces/ISupplier";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -35,26 +32,22 @@ export function useColumns({
     {
       headerName: "Nome",
       field: "name",
-      valueFormatter: (params: CellFunctionParams<ISupplier>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<ISupplier>) => params.value || "--",
     },
     {
       headerName: "Telefone",
       field: "phone",
-      valueFormatter: (params: CellFunctionParams<ISupplier>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<ISupplier>) => params.value || "--",
     },
     {
       headerName: "E-mail",
       field: "email",
-      valueFormatter: (params: CellFunctionParams<ISupplier>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<ISupplier>) => params.value || "--",
     },
     {
       headerName: "cnpj",
       field: "cnpj",
-      valueFormatter: (params: CellFunctionParams<ISupplier>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<ISupplier>) => params.value || "--",
     },
     {
       headerName: "",

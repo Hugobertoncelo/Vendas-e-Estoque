@@ -9,11 +9,7 @@ type Props = {
   InputFilter?: ReactNode;
 };
 
-export function HeaderPage({
-  buttonText,
-  onClickFunction,
-  InputFilter = <></>,
-}: Props) {
+export function HeaderPage({ buttonText, onClickFunction, InputFilter = <></> }: Props) {
   return (
     <header className={style.headerContainer}>
       <div className={style.filters}>{InputFilter && InputFilter}</div>

@@ -1,7 +1,4 @@
-import {
-  IColumn,
-  CellFunctionParams,
-} from "../../../../models/interfaces/IColumn";
+import { IColumn, CellFunctionParams } from "../../../../models/interfaces/IColumn";
 import style from "../Clients.module.scss";
 import { IClient } from "../../../../models/interfaces/IClient";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,10 +9,7 @@ interface UseColumnsParams {
   handleDeleteClient: (client: IClient) => void;
 }
 
-export function useColumns({
-  handleEditClient,
-  handleDeleteClient,
-}: UseColumnsParams): IColumn[] {
+export function useColumns({ handleEditClient, handleDeleteClient }: UseColumnsParams): IColumn[] {
   const actions = [
     {
       icon: <FontAwesomeIcon icon={faPen} className={style.icon} />,
@@ -35,26 +29,22 @@ export function useColumns({
     {
       headerName: "Nome",
       field: "name",
-      valueFormatter: (params: CellFunctionParams<IClient>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IClient>) => params.value || "--",
     },
     {
       headerName: "Telefone",
       field: "phone",
-      valueFormatter: (params: CellFunctionParams<IClient>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IClient>) => params.value || "--",
     },
     {
       headerName: "E-mail",
       field: "email",
-      valueFormatter: (params: CellFunctionParams<IClient>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IClient>) => params.value || "--",
     },
     {
       headerName: "CPF",
       field: "cpf",
-      valueFormatter: (params: CellFunctionParams<IClient>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IClient>) => params.value || "--",
     },
     {
       headerName: "",

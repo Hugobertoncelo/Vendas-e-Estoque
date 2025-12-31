@@ -1,13 +1,6 @@
 import { format } from "../../../../../utils/format";
 
-export function CustomLabel({
-  x,
-  y,
-  width,
-  fill,
-  value,
-  formatarReal = false,
-}: any) {
+export function CustomLabel({ x, y, width, fill, value, formatarReal = false }: any) {
   return (
     <text
       style={{

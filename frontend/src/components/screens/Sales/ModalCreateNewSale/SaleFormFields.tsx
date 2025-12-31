@@ -66,14 +66,9 @@ export const SaleFormFields: React.FC<SaleFormFieldsProps> = ({
 
     <Autocomplete
       options={productsList}
-      getOptionLabel={(option) =>
-        `${option.name} ${option.stock !== undefined ? `| ` : ""}`
-      }
+      getOptionLabel={(option) => `${option.name} ${option.stock !== undefined ? `| ` : ""}`}
       renderOption={(props, option) => (
-        <li
-          {...props}
-          style={{ display: "flex", alignItems: "center", gap: 8 }}
-        >
+        <li {...props} style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <span
             style={{
               fontWeight: 500,
@@ -86,31 +81,23 @@ export const SaleFormFields: React.FC<SaleFormFieldsProps> = ({
               cursor: "pointer",
             }}
             onMouseEnter={(e) => {
-              const el = e.currentTarget.querySelector(
-                ".marquee-text"
-              ) as HTMLElement | null;
+              const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
               if (option.name && option.name.length > 18 && el) {
                 el.style.animation = "marquee 3s linear infinite";
               }
             }}
             onMouseLeave={(e) => {
-              const el = e.currentTarget.querySelector(
-                ".marquee-text"
-              ) as HTMLElement | null;
+              const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
               if (el) el.style.animation = "";
             }}
             onTouchStart={(e) => {
-              const el = e.currentTarget.querySelector(
-                ".marquee-text"
-              ) as HTMLElement | null;
+              const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
               if (option.name && option.name.length > 18 && el) {
                 el.style.animation = "marquee 3s linear infinite";
               }
             }}
             onTouchEnd={(e) => {
-              const el = e.currentTarget.querySelector(
-                ".marquee-text"
-              ) as HTMLElement | null;
+              const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
               if (el) el.style.animation = "";
             }}
             title={option.name}

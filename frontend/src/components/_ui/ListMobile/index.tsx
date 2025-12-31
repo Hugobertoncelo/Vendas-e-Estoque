@@ -1,10 +1,4 @@
-import {
-  Collapse,
-  List,
-  ListItem,
-  ListItemButton,
-  Skeleton,
-} from "@mui/material";
+import { Collapse, List, ListItem, ListItemButton, Skeleton } from "@mui/material";
 import style from "./ListMobile.module.scss";
 import { useState } from "react";
 import { EmptyItems } from "../EmptyItems";
@@ -22,13 +16,7 @@ type Props = {
   loading?: boolean;
 };
 
-export function ListMobile({
-  items,
-  itemFields,
-  collapseItems,
-  emptyText,
-  loading,
-}: Props) {
+export function ListMobile({ items, itemFields, collapseItems, emptyText, loading }: Props) {
   const [itemOpened, setItemOpened] = useState<ItemStatus>({});
 
   function handleOpenItem(itemId: string) {
@@ -109,9 +97,7 @@ export function ListMobile({
                             </>
                           ) : (
                             <>
-                              <span style={{ fontWeight: "600" }}>
-                                {collapseItem.headerName}
-                              </span>
+                              <span style={{ fontWeight: "600" }}>{collapseItem.headerName}</span>
                               <span
                                 className={collapseItem?.cellClass?.({
                                   value: item[collapseItem.field],

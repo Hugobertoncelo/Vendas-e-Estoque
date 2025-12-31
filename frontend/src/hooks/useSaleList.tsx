@@ -20,10 +20,7 @@ export function useSaleList({ otherFilters }: Props) {
   function getSales() {
     setLoadingSales(true);
     salesService
-      .getAll(
-        { filters: { ...router.query, ...otherFilters } },
-        httpClientProvider
-      )
+      .getAll({ filters: { ...router.query, ...otherFilters } }, httpClientProvider)
       .then((res) => {
         setSales(res.data.items);
       })

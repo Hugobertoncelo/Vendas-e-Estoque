@@ -27,18 +27,10 @@ export function MenuOptionsMobile({ handleOpenMenuOptions }: Props) {
                   onClick={() => {
                     handleSelectOption(option);
                   }}
-                  style={
-                    disabled ? { opacity: "0.4", cursor: "not-allowed" } : {}
-                  }
-                  className={
-                    router.pathname === option.link
-                      ? style.activeMenu
-                      : undefined
-                  }
+                  style={disabled ? { opacity: "0.4", cursor: "not-allowed" } : {}}
+                  className={router.pathname === option.link ? style.activeMenu : undefined}
                 >
-                  {icon && (
-                    <FontAwesomeIcon className={style.icon} icon={icon} />
-                  )}
+                  {icon && <FontAwesomeIcon className={style.icon} icon={icon} />}
                   <span>{option.title}</span>
                 </button>
               </li>

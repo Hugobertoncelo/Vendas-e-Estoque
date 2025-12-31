@@ -10,9 +10,7 @@ type Props = {
 
 export function useUserOptions({ position }: Props) {
   const { userInfo } = useContext(UserContext);
-  const [userInfoAnchorEl, setUserInfoAnchorEl] = useState<HTMLElement | null>(
-    null
-  );
+  const [userInfoAnchorEl, setUserInfoAnchorEl] = useState<HTMLElement | null>(null);
   const router = useRouter();
 
   function getPosition() {

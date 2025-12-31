@@ -1,8 +1,5 @@
 import dayjs from "dayjs";
-import {
-  IColumn,
-  CellFunctionParams,
-} from "../../../../models/interfaces/IColumn";
+import { IColumn, CellFunctionParams } from "../../../../models/interfaces/IColumn";
 import { format } from "../../../../utils/format";
 import { ISale } from "../../../../models/interfaces/ISale";
 import style from "../Sales.module.scss";
@@ -14,10 +11,7 @@ interface UseColumnsParams {
   handleEditSale: (sale: ISale) => void;
 }
 
-export function useColumns({
-  handleEditSale,
-  handleCancelSale,
-}: UseColumnsParams): IColumn[] {
+export function useColumns({ handleEditSale, handleCancelSale }: UseColumnsParams): IColumn[] {
   const actions = [
     {
       icon: <FontAwesomeIcon className={style.icon} icon={faPen} />,
@@ -45,8 +39,7 @@ export function useColumns({
     {
       headerName: "Cliente",
       field: "client",
-      valueFormatter: ({ data: { client } }: CellFunctionParams<ISale>) =>
-        client?.name || "--",
+      valueFormatter: ({ data: { client } }: CellFunctionParams<ISale>) => client?.name || "--",
       cellClass: ({ data: { status } }) => {
         if (status === "canceled") return style.canceledText;
       },
@@ -83,8 +76,7 @@ export function useColumns({
     {
       headerName: "Valor total",
       field: "totalValue",
-      valueFormatter: (params: CellFunctionParams<ISale>) =>
-        format.formatarReal(params.value),
+      valueFormatter: (params: CellFunctionParams<ISale>) => format.formatarReal(params.value),
       cellClass: ({ data: { status } }) => {
         if (status === "canceled") return style.canceledText;
       },

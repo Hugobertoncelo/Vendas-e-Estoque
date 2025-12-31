@@ -5,13 +5,11 @@ export function useFieldsMobile() {
   return [
     {
       field: "name",
-      valueFormatter: (params: CellFunctionParams<ISupplier>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<ISupplier>) => params.value || "--",
     },
     {
       field: "phone",
-      valueFormatter: (params: CellFunctionParams<ISupplier>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<ISupplier>) => params.value || "--",
     },
   ];
 }

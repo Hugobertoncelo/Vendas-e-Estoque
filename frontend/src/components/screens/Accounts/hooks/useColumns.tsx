@@ -1,7 +1,4 @@
-import {
-  IColumn,
-  CellFunctionParams,
-} from "../../../../models/interfaces/IColumn";
+import { IColumn, CellFunctionParams } from "../../../../models/interfaces/IColumn";
 import { format } from "../../../../utils/format";
 import style from "../Accounts.module.scss";
 import dayjs from "dayjs";
@@ -50,14 +47,12 @@ export function useColumns({
     {
       headerName: "Descrição",
       field: "description",
-      valueFormatter: (params: CellFunctionParams<IAccount>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IAccount>) => params.value || "--",
     },
     {
       headerName: "Categoria",
       field: "category",
-      valueFormatter: (params: CellFunctionParams<IAccount>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IAccount>) => params.value || "--",
     },
     {
       headerName: "Status",

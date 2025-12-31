@@ -8,10 +8,7 @@ export function FilterByName() {
   const { errors, handleSubmit, onFilterByName, register } = useFilterByName();
 
   return (
-    <form
-      className={style.filterContainer}
-      onSubmit={handleSubmit(onFilterByName)}
-    >
+    <form className={style.filterContainer} onSubmit={handleSubmit(onFilterByName)}>
       <CustomTextField
         size="small"
         type="text"

@@ -5,8 +5,7 @@ import { Loading } from "../../_ui/Loading";
 import { useFormAuth } from "./hooks/useFormAuth";
 
 export function Login() {
-  const { errors, handleSubmit, isSubmitting, onLogin, register } =
-    useFormAuth();
+  const { errors, handleSubmit, isSubmitting, onLogin, register } = useFormAuth();
 
   return (
     <div className={style.loginContainer}>

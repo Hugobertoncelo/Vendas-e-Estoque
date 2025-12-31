@@ -8,8 +8,7 @@ import { CellFunctionParams } from "../../../_ui/TableComponent/interfaces";
 import { IAccount } from "../../../../models/interfaces/IAccount";
 
 export function useStatus(params: CellFunctionParams<IAccount>) {
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
   const router = useRouter();
 
   function handleChangeStatusAccount(event: ChangeEvent<HTMLInputElement>) {
@@ -21,7 +20,7 @@ export function useStatus(params: CellFunctionParams<IAccount>) {
           idAccount,
           status: event.target.value,
         },
-        httpClientProvider
+        httpClientProvider,
       )
       .then(() => {
         setAlertNotifyConfigs({

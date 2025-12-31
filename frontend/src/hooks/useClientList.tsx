@@ -16,9 +16,7 @@ export function useClientList() {
     const { searchString } = router.query;
 
     const filters = {
-      ...(searchString
-        ? { searchString: String(searchString) }
-        : { searchString: null }),
+      ...(searchString ? { searchString: String(searchString) } : { searchString: null }),
     };
 
     clientsService

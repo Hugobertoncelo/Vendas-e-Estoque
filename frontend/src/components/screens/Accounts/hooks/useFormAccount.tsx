@@ -18,8 +18,7 @@ type Props = {
 export function useFormAccount({ handleClose, accountDataToEdit }: Props) {
   const router = useRouter();
 
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
   const {
     register,
     handleSubmit,
@@ -71,10 +70,7 @@ export function useFormAccount({ handleClose, accountDataToEdit }: Props) {
 
   async function onEditAccount(accountData: INewAccount) {
     await accountsService
-      .update(
-        { ...accountData, _id: accountData._id || "" },
-        httpClientProvider
-      )
+      .update({ ...accountData, _id: accountData._id || "" }, httpClientProvider)
       .then(() => {
         reset();
 
@@ -97,8 +93,7 @@ export function useFormAccount({ handleClose, accountDataToEdit }: Props) {
           ...alertNotifyConfigs,
           open: true,
           type: ALERT_NOTIFY_TYPE.ERROR,
-          text:
-            "Erro ao tentar atualizar dados da conta " + `(${err?.message})`,
+          text: "Erro ao tentar atualizar dados da conta " + `(${err?.message})`,
         });
       });
   }

@@ -2,11 +2,7 @@ import { useContext, useEffect } from "react";
 import { AlertContext } from "../../../contexts/alertContext";
 import style from "./AlertNotify.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faExclamation,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faExclamation, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export function AlertNotify() {
   const { alertNotifyConfigs: configs } = useContext(AlertContext);

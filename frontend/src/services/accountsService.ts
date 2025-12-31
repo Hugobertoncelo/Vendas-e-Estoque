@@ -11,10 +11,7 @@ import { usersService } from "./usersService";
 export const accountsService = {
   userInfo: usersService.getUserInfo(),
 
-  getAll(
-    { filters }: GetAllAccountsDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  getAll({ filters }: GetAllAccountsDTO, httpClientProvider: IHttpClientProvider) {
     const params = {
       ...filters,
       userId: this.userInfo?._id,
@@ -25,10 +22,7 @@ export const accountsService = {
     });
   },
 
-  create(
-    { newAccountData }: CreateAccountDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  create({ newAccountData }: CreateAccountDTO, httpClientProvider: IHttpClientProvider) {
     const body = {
       ...newAccountData,
       value: Number(newAccountData?.value),
@@ -42,7 +36,7 @@ export const accountsService = {
 
   update(
     { type, value, _id, category, description }: UpdateAccountDTO,
-    httpClientProvider: IHttpClientProvider
+    httpClientProvider: IHttpClientProvider,
   ) {
     const body = {
       type,
@@ -59,17 +53,14 @@ export const accountsService = {
 
   updateStatus(
     { idAccount, status }: UpdateStatusAccountDTO,
-    httpClientProvider: IHttpClientProvider
+    httpClientProvider: IHttpClientProvider,
   ) {
     return httpClientProvider.patch(`/contas/updateStatus/${idAccount}`, {
       status,
     });
   },
 
-  delete(
-    { idAccount }: DeleteAccountDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  delete({ idAccount }: DeleteAccountDTO, httpClientProvider: IHttpClientProvider) {
     return httpClientProvider.delete(`/contas/`, {
       params: {
         idAccount,

@@ -13,8 +13,7 @@ type Props = {
   supplierDataToEdit: ISupplier | null;
 };
 export function useFormSupplier({ handleClose, supplierDataToEdit }: Props) {
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
   const {
     register,
     handleSubmit,
@@ -84,9 +83,7 @@ export function useFormSupplier({ handleClose, supplierDataToEdit }: Props) {
           ...alertNotifyConfigs,
           open: true,
           type: ALERT_NOTIFY_TYPE.ERROR,
-          text:
-            "Erro ao tentar atualizar dados do fornecedor " +
-            `(${err?.message})`,
+          text: "Erro ao tentar atualizar dados do fornecedor " + `(${err?.message})`,
         });
       });
   }

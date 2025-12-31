@@ -10,10 +10,7 @@ import { usersService } from "./usersService";
 export const productsService = {
   userInfo: usersService.getUserInfo(),
 
-  getAll(
-    { filters }: GetAllProductsDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  getAll({ filters }: GetAllProductsDTO, httpClientProvider: IHttpClientProvider) {
     const params = {
       ...filters,
       userId: this.userInfo?._id,
@@ -36,7 +33,7 @@ export const productsService = {
 
   create(
     { name, stock, value, isDefault }: CreateProductDTO,
-    httpClientProvider: IHttpClientProvider
+    httpClientProvider: IHttpClientProvider,
   ) {
     const body = {
       stock,
@@ -53,7 +50,7 @@ export const productsService = {
 
   update(
     { _id, name, stock, value, isDefault }: UpdateProductDTO,
-    httpClientProvider: IHttpClientProvider
+    httpClientProvider: IHttpClientProvider,
   ) {
     const body = {
       _id,
@@ -68,10 +65,7 @@ export const productsService = {
     });
   },
 
-  delete(
-    { idProduct }: DeleteProductDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  delete({ idProduct }: DeleteProductDTO, httpClientProvider: IHttpClientProvider) {
     return httpClientProvider.delete(`/produtos/`, {
       params: {
         idProduct,

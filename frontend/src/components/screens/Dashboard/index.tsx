@@ -72,9 +72,7 @@ export function Dashboard() {
             <Card
               title="Vendas aprovadas"
               value={format.formatarReal(totalSales?.totalValueApproved || 0)}
-              icon={
-                <FontAwesomeIcon className={style.icon} icon={faDollarSign} />
-              }
+              icon={<FontAwesomeIcon className={style.icon} icon={faDollarSign} />}
               route="vendas"
               className="valueCard"
             />
@@ -103,9 +101,7 @@ export function Dashboard() {
             <Card
               title="Contas de saída"
               className="outCard"
-              icon={
-                <FontAwesomeIcon className={style.icon} icon={faArrowDown} />
-              }
+              icon={<FontAwesomeIcon className={style.icon} icon={faArrowDown} />}
               value={format.formatarReal(totalAccounts.outTotalValue || 0)}
               route="contas"
               query={{
@@ -115,11 +111,9 @@ export function Dashboard() {
             <Card
               title="Total"
               className="totalCard"
-              icon={
-                <FontAwesomeIcon className={style.icon} icon={faDollarSign} />
-              }
+              icon={<FontAwesomeIcon className={style.icon} icon={faDollarSign} />}
               value={format.formatarReal(
-                totalAccounts.inTotalValue - totalAccounts.outTotalValue || 0
+                totalAccounts.inTotalValue - totalAccounts.outTotalValue || 0,
               )}
               route="contas"
             />
@@ -152,11 +146,7 @@ export function Dashboard() {
                     {graphPizzaData.values.map((entry: any, index: number) => (
                       <Cell
                         key={`cell-${index}`}
-                        fill={
-                          graphPizzaData.colors[
-                            index % graphPizzaData.colors.length
-                          ]
-                        }
+                        fill={graphPizzaData.colors[index % graphPizzaData.colors.length]}
                       />
                     ))}
                   </Pie>
@@ -205,15 +195,9 @@ export function Dashboard() {
               }}
             >
               <ResponsiveContainer>
-                <BarChart
-                  margin={{ top: 40, right: 0, bottom: 0, left: 0 }}
-                  data={paymentTypes}
-                >
+                <BarChart margin={{ top: 40, right: 0, bottom: 0, left: 0 }} data={paymentTypes}>
                   <Tooltip content={<CustomTooltipBarGraph />} />
-                  <XAxis
-                    tick={{ fill: "#c4c4cc", fontWeight: "600" }}
-                    dataKey="label"
-                  />
+                  <XAxis tick={{ fill: "#c4c4cc", fontWeight: "600" }} dataKey="label" />
                   <YAxis />
                   <Tooltip />
                   <Bar radius={[10, 10, 0, 0]} dataKey="Valor" fill="#ff6600">

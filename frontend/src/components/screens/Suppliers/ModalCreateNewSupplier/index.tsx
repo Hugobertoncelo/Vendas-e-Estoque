@@ -10,30 +10,18 @@ interface Props {
   handleClose: () => void;
 }
 
-export function ModalCreateNewSupplier({
-  open,
-  handleClose,
-  supplierDataToEdit,
-}: Props) {
-  const {
-    errors,
-    handleSubmit,
-    isSubmitting,
-    onCreateNewSupplier,
-    onEditSupplier,
-    register,
-  } = useFormSupplier({
-    handleClose,
-    supplierDataToEdit,
-  });
+export function ModalCreateNewSupplier({ open, handleClose, supplierDataToEdit }: Props) {
+  const { errors, handleSubmit, isSubmitting, onCreateNewSupplier, onEditSupplier, register } =
+    useFormSupplier({
+      handleClose,
+      supplierDataToEdit,
+    });
 
   return (
     <ModalLayout
       open={open}
       handleClose={handleClose}
-      onSubmit={handleSubmit(
-        supplierDataToEdit ? onEditSupplier : onCreateNewSupplier
-      )}
+      onSubmit={handleSubmit(supplierDataToEdit ? onEditSupplier : onCreateNewSupplier)}
       title="Cadastro de fornecedor"
       submitButtonText="Cadastrar"
       loading={isSubmitting}

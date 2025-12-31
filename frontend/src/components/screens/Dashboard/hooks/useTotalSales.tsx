@@ -15,6 +15,6 @@ export function useTotalSales(sales: ISale[]) {
     {
       totalValueApproved: 0,
       totalValueCanceled: 0,
-    }
+    },
   );
 }

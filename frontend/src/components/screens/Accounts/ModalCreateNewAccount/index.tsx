@@ -13,11 +13,7 @@ interface Props {
   handleClose: () => void;
 }
 
-export function ModalCreateNewAccount({
-  open,
-  handleClose,
-  accountDataToEdit,
-}: Props) {
+export function ModalCreateNewAccount({ open, handleClose, accountDataToEdit }: Props) {
   const {
     onCreateNewAccount,
     onEditAccount,
@@ -36,9 +32,7 @@ export function ModalCreateNewAccount({
     <ModalLayout
       open={open}
       handleClose={handleClose}
-      onSubmit={handleSubmit(
-        accountDataToEdit ? onEditAccount : onCreateNewAccount
-      )}
+      onSubmit={handleSubmit(accountDataToEdit ? onEditAccount : onCreateNewAccount)}
       title="Cadastro de conta"
       submitButtonText="Cadastrar"
       loading={isSubmitting}

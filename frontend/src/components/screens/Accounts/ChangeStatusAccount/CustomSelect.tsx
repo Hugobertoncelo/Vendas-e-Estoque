@@ -1,9 +1,5 @@
 import { styled } from "@mui/system";
-import {
-  inputLabelClasses,
-  outlinedInputClasses,
-  TextField,
-} from "@mui/material";
+import { inputLabelClasses, outlinedInputClasses, TextField } from "@mui/material";
 
 export const CustomSelect = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -15,10 +11,9 @@ export const CustomSelect = styled(TextField)({
     borderRadius: "0.7rem",
     border: "transparent",
   },
-  [`&:hover .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]:
-    {
-      borderColor: "transparent",
-    },
+  [`&:hover .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
+    borderColor: "transparent",
+  },
   [`&:hover .Mui-error .${outlinedInputClasses.notchedOutline}`]: {
     borderColor: "#ff2222",
   },

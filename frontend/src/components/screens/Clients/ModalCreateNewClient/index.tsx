@@ -10,30 +10,18 @@ type Props = {
   handleClose: () => void;
 };
 
-export function ModalCreateNewClient({
-  open,
-  handleClose,
-  clientDataToEdit,
-}: Props) {
-  const {
-    errors,
-    handleSubmit,
-    isSubmitting,
-    onCreateNewClient,
-    onEditClient,
-    register,
-  } = useFormClient({
-    handleClose,
-    clientDataToEdit,
-  });
+export function ModalCreateNewClient({ open, handleClose, clientDataToEdit }: Props) {
+  const { errors, handleSubmit, isSubmitting, onCreateNewClient, onEditClient, register } =
+    useFormClient({
+      handleClose,
+      clientDataToEdit,
+    });
 
   return (
     <ModalLayout
       open={open}
       handleClose={handleClose}
-      onSubmit={handleSubmit(
-        clientDataToEdit ? onEditClient : onCreateNewClient
-      )}
+      onSubmit={handleSubmit(clientDataToEdit ? onEditClient : onCreateNewClient)}
       title="Cadastro de cliente"
       submitButtonText="Cadastrar"
       loading={isSubmitting}

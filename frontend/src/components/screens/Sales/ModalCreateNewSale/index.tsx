@@ -14,11 +14,7 @@ interface Props {
   handleClose: () => void;
 }
 
-export function ModalCreateNewSale({
-  open,
-  handleClose,
-  saleToEditData,
-}: Props) {
+export function ModalCreateNewSale({ open, handleClose, saleToEditData }: Props) {
   const { products: productsList } = useProductList();
   const { clients: clientsList } = useClientList();
 
@@ -65,16 +61,12 @@ export function ModalCreateNewSale({
         <section className={style.sectionContainer}>
           <div className={style.headerProductsList}>
             <h3>Produtos</h3>
-            {products.length > 0 && (
-              <span>{format.formatarReal(totalValue || 0)}</span>
-            )}
+            {products.length > 0 && <span>{format.formatarReal(totalValue || 0)}</span>}
           </div>
           {products.length > 0 ? (
             <ul className={style.listProducts}>
               {products.map((product, index) => {
-                const fullProduct = productsList.find(
-                  (p) => p._id === product._id
-                );
+                const fullProduct = productsList.find((p) => p._id === product._id);
                 return (
                   <ProductListItem
                     key={product?._id}

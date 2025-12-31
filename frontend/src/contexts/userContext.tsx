@@ -23,7 +23,5 @@ export function UserContextComponent({ children }: Props) {
     }
   }, []);
 
-  return (
-    <UserContext.Provider value={{ userInfo }}>{children}</UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ userInfo }}>{children}</UserContext.Provider>;
 }

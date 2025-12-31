@@ -16,8 +16,7 @@ config.autoAddCss = false;
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const title = "Sistema de vendas";
-  const restrictLayout =
-    router.route !== "/login" && router.route !== "/createAccount";
+  const restrictLayout = router.route !== "/login" && router.route !== "/createAccount";
   const [menuOptionsOpened, setMenuOptionsOpened] = useState<boolean>(false);
 
   function handleOpenMenuOptions() {
@@ -42,18 +41,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             />
           )}
 
-          <main
-            className={restrictLayout ? "screensContainer" : "loginContainer"}
-          >
+          <main className={restrictLayout ? "screensContainer" : "loginContainer"}>
             {restrictLayout && menuOptionsOpened && (
-              <MenuOptionsMobile
-                handleOpenMenuOptions={handleOpenMenuOptions}
-              />
+              <MenuOptionsMobile handleOpenMenuOptions={handleOpenMenuOptions} />
             )}
 
-            {restrictLayout && (
-              <h2 className="titlePage">{title || "Sistema de vendas"}</h2>
-            )}
+            {restrictLayout && <h2 className="titlePage">{title || "Sistema de vendas"}</h2>}
             <Component {...pageProps} />
           </main>
         </AlertContextComponent>

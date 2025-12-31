@@ -6,16 +6,12 @@ import { Loading } from "../../_ui/Loading";
 import { useCreateAccount } from "./hooks/useCreateAccount";
 
 export function CreateAccount() {
-  const { errors, handleSubmit, isSubmitting, onCreateAccount, register } =
-    useCreateAccount();
+  const { errors, handleSubmit, isSubmitting, onCreateAccount, register } = useCreateAccount();
   return (
     <div className={style.createAccountContainer}>
       <h2>Criar uma nova conta</h2>
 
-      <form
-        onSubmit={handleSubmit(onCreateAccount)}
-        className={style.formContainer}
-      >
+      <form onSubmit={handleSubmit(onCreateAccount)} className={style.formContainer}>
         <CustomTextField
           type="text"
           label="Nome"
@@ -52,9 +48,7 @@ export function CreateAccount() {
           placeholder="Digite novamente a senha"
           {...register("confirmPassword")}
           error={!!errors?.confirmPassword}
-          helperText={
-            errors?.confirmPassword && errors?.confirmPassword?.message
-          }
+          helperText={errors?.confirmPassword && errors?.confirmPassword?.message}
         />
         <button disabled={isSubmitting} type="submit">
           {isSubmitting ? <Loading size={15} /> : "Cadastrar"}

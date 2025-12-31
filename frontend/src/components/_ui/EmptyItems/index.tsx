@@ -1,9 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./EmptyItems.module.scss";
-import {
-  faSquareXmark,
-  IconDefinition,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSquareXmark, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   text: string;

@@ -27,7 +27,7 @@ export function useAccountList({ otherFilters }: Props) {
             ...otherFilters,
           },
         },
-        httpClientProvider
+        httpClientProvider,
       )
       .then((res) => {
         setAccounts(res.data.items);

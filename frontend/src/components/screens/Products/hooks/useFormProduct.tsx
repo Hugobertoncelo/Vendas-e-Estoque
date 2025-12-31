@@ -15,8 +15,7 @@ type Props = {
 };
 
 export function useFormProduct({ handleClose, productDataToEdit }: Props) {
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
 
   const {
     register,

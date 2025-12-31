@@ -11,6 +11,6 @@ export function useTotalAccounts(accounts: IAccount[]) {
     {
       inTotalValue: 0,
       outTotalValue: 0,
-    }
+    },
   );
 }

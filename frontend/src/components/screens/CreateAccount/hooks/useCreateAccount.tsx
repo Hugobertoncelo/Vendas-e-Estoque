@@ -11,8 +11,7 @@ import { usersService } from "../../../../services/usersService";
 import { ALERT_NOTIFY_TYPE } from "../../../../models/enums/AlertNotifyType";
 
 export function useCreateAccount() {
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
   const {
     register,
     handleSubmit,

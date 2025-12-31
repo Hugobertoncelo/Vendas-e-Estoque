@@ -1,7 +1,4 @@
-import {
-  IColumn,
-  CellFunctionParams,
-} from "../../../../models/interfaces/IColumn";
+import { IColumn, CellFunctionParams } from "../../../../models/interfaces/IColumn";
 import { format } from "../../../../utils/format";
 import style from "../Products.module.scss";
 import { IProduct } from "../../../../models/interfaces/IProduct";
@@ -36,20 +33,17 @@ export function useColumns({
     {
       headerName: "Código",
       field: "code",
-      valueFormatter: (params: CellFunctionParams<IProduct>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IProduct>) => params.value || "--",
     },
     {
       headerName: "Nome do produto",
       field: "name",
-      valueFormatter: (params: CellFunctionParams<IProduct>) =>
-        params.value || "--",
+      valueFormatter: (params: CellFunctionParams<IProduct>) => params.value || "--",
     },
     {
       headerName: "Quantidade",
       field: "stock",
-      valueFormatter: (params: CellFunctionParams<IProduct>) =>
-        params.value || 0,
+      valueFormatter: (params: CellFunctionParams<IProduct>) => params.value || 0,
     },
     {
       headerName: "Valor",

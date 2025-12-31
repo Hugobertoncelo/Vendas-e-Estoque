@@ -3,9 +3,7 @@ import { IProduct } from "../../../../models/interfaces/IProduct";
 
 export function useEditProduct() {
   const [formModalOpened, setFormModalOpened] = useState<boolean>(false);
-  const [productDataToEdit, setProductDataToEdit] = useState<IProduct | null>(
-    null
-  );
+  const [productDataToEdit, setProductDataToEdit] = useState<IProduct | null>(null);
 
   function handleEditProduct(product: IProduct) {
     setProductDataToEdit(product);

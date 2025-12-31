@@ -36,11 +36,7 @@ export function ModalLayout({
         <Box className={style.header} component="header">
           <h3>{title || "Modal"}</h3>
 
-          <FontAwesomeIcon
-            className={style.closeButton}
-            onClick={handleClose}
-            icon={faXmark}
-          />
+          <FontAwesomeIcon className={style.closeButton} onClick={handleClose} icon={faXmark} />
         </Box>
 
         <Box className={style.mainContent} component="main">

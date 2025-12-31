@@ -2,12 +2,7 @@ import dayjs from "dayjs";
 import { usersService } from "./usersService";
 import utc from "dayjs/plugin/utc";
 import { IHttpClientProvider } from "../providers/HttpClientProvider/IHttpClientProvider";
-import {
-  CreateSaleDTO,
-  DeleteSaleDTO,
-  GetAllSalesDTO,
-  UpdateSaleDTO,
-} from "../dtos/SalesDTOS";
+import { CreateSaleDTO, DeleteSaleDTO, GetAllSalesDTO, UpdateSaleDTO } from "../dtos/SalesDTOS";
 dayjs.extend(utc);
 
 export const salesService = {
@@ -15,16 +10,12 @@ export const salesService = {
 
   getAll(
     { filters: { startDate, endDate, status } }: GetAllSalesDTO,
-    httpClientProvider: IHttpClientProvider
+    httpClientProvider: IHttpClientProvider,
   ) {
     const params = {
       ...(status ? { status } : {}),
-      ...(startDate
-        ? { startDate }
-        : { startDate: dayjs.utc().startOf("month").toISOString() }),
-      ...(endDate
-        ? { endDate }
-        : { endDate: dayjs.utc().endOf("month").toISOString() }),
+      ...(startDate ? { startDate } : { startDate: dayjs.utc().startOf("month").toISOString() }),
+      ...(endDate ? { endDate } : { endDate: dayjs.utc().endOf("month").toISOString() }),
       userId: this.userInfo?._id,
     };
 
@@ -33,10 +24,7 @@ export const salesService = {
     });
   },
 
-  create(
-    { newSaleData, totalValue }: CreateSaleDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  create({ newSaleData, totalValue }: CreateSaleDTO, httpClientProvider: IHttpClientProvider) {
     const body = {
       ...newSaleData,
       totalValue,
@@ -48,10 +36,7 @@ export const salesService = {
     });
   },
 
-  update(
-    { saleData, totalValue }: UpdateSaleDTO,
-    httpClientProvider: IHttpClientProvider
-  ) {
+  update({ saleData, totalValue }: UpdateSaleDTO, httpClientProvider: IHttpClientProvider) {
     const body = {
       ...saleData,
       totalValue,

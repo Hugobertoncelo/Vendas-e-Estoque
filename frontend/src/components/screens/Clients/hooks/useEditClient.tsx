@@ -3,9 +3,7 @@ import { IClient } from "../../../../models/interfaces/IClient";
 
 export function useEditClient() {
   const [formModalOpened, setFormModalOpened] = useState<boolean>(false);
-  const [clientDataToEdit, setClientDataToEdit] = useState<IClient | null>(
-    null
-  );
+  const [clientDataToEdit, setClientDataToEdit] = useState<IClient | null>(null);
 
   function handleEditClient(client: IClient) {
     setClientDataToEdit(client);

@@ -11,7 +11,7 @@ interface ProductListItemProps {
   fullProduct?: ISaleProduct;
   handleChangeProduct: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    index: number
+    index: number,
   ) => void;
   handleRemoveProduct: (id: string) => void;
 }
@@ -36,33 +36,25 @@ export const ProductListItem: React.FC<ProductListItemProps> = ({
         position: "relative",
       }}
       onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
-        const el = e.currentTarget.querySelector(
-          ".marquee-text"
-        ) as HTMLElement | null;
+        const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
         if (el && fullProduct?.name && fullProduct.name.length > 18) {
           el.style.animation = "marquee 3s linear infinite";
         }
       }}
       onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
-        const el = e.currentTarget.querySelector(
-          ".marquee-text"
-        ) as HTMLElement | null;
+        const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
         if (el) {
           el.style.animation = "";
         }
       }}
       onTouchStart={(e: React.TouchEvent<HTMLSpanElement>) => {
-        const el = e.currentTarget.querySelector(
-          ".marquee-text"
-        ) as HTMLElement | null;
+        const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
         if (el && fullProduct?.name && fullProduct.name.length > 18) {
           el.style.animation = "marquee 1s linear infinite";
         }
       }}
       onTouchEnd={(e: React.TouchEvent<HTMLSpanElement>) => {
-        const el = e.currentTarget.querySelector(
-          ".marquee-text"
-        ) as HTMLElement | null;
+        const el = e.currentTarget.querySelector(".marquee-text") as HTMLElement | null;
         if (el) {
           el.style.animation = "";
         }
@@ -92,9 +84,7 @@ export const ProductListItem: React.FC<ProductListItemProps> = ({
           letterSpacing: 0.5,
         }}
       >
-        {fullProduct.stock > 0
-          ? `Estoque: ${fullProduct.stock}`
-          : "Sem estoque"}
+        {fullProduct.stock > 0 ? `Estoque: ${fullProduct.stock}` : "Sem estoque"}
       </span>
     )}
     <CustomTextField

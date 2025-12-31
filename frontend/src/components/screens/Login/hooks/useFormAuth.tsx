@@ -9,8 +9,7 @@ import { AlertContext } from "../../../../contexts/alertContext";
 import { useContext } from "react";
 
 export function useFormAuth() {
-  const { alertNotifyConfigs, setAlertNotifyConfigs } =
-    useContext(AlertContext);
+  const { alertNotifyConfigs, setAlertNotifyConfigs } = useContext(AlertContext);
 
   const {
     register,
@@ -52,9 +51,7 @@ export function useFormAuth() {
         setAlertNotifyConfigs({
           ...alertNotifyConfigs,
           type: ALERT_NOTIFY_TYPE.ERROR,
-          text:
-            "Erro ao tentar realizar autenticação do usuário " +
-            `(${err?.message})`,
+          text: "Erro ao tentar realizar autenticação do usuário " + `(${err?.message})`,
           open: true,
         });
       });

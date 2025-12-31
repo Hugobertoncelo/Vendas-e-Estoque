@@ -1,9 +1,5 @@
 import { styled } from "@mui/system";
-import {
-  inputLabelClasses,
-  outlinedInputClasses,
-  TextField,
-} from "@mui/material";
+import { inputLabelClasses, outlinedInputClasses, TextField } from "@mui/material";
 
 export const CustomTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -16,11 +12,10 @@ export const CustomTextField = styled(TextField)({
     border: "2px solid #ff2e2e",
     fontWeight: "500",
   },
-  [`&:hover .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]:
-    {
-      // Style da borda com hover
-      borderColor: "#aaaaaa",
-    },
+  [`&:hover .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
+    // Style da borda com hover
+    borderColor: "#aaaaaa",
+  },
   [`&:hover .Mui-error .${outlinedInputClasses.notchedOutline}`]: {
     // Style da borda com hover
     borderColor: "#ff2e2e",

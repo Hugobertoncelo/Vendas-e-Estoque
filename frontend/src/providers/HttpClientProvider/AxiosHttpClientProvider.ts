@@ -14,7 +14,7 @@ export class AxiosHttpClientProvider implements IHttpClientProvider {
   constructor() {
     if (AxiosHttpClientProvider._instance) {
       throw new Error(
-        "Erro ao criar instância do AxiosHttpClientProvider. Execute getInstance() para criar uma nova"
+        "Erro ao criar instância do AxiosHttpClientProvider. Execute getInstance() para criar uma nova",
       );
     }
     AxiosHttpClientProvider._instance = this;
@@ -33,14 +33,13 @@ export class AxiosHttpClientProvider implements IHttpClientProvider {
       },
       (error) => {
         return Promise.reject(error);
-      }
+      },
     );
 
     this.httpIntance.interceptors.response.use(
       (config: AxiosResponse) => config,
       async (error: AxiosError) => {
-        const tokenExpired =
-          error?.response?.status === HTTP_STATUS_CODE.UNAUTHORIZED;
+        const tokenExpired = error?.response?.status === HTTP_STATUS_CODE.UNAUTHORIZED;
 
         if (tokenExpired) {
           try {
@@ -48,7 +47,7 @@ export class AxiosHttpClientProvider implements IHttpClientProvider {
 
             const { data } = await usersService.updateRefreshTokenService(
               refreshToken,
-              httpClientProvider
+              httpClientProvider,
             );
 
             if (!data.token || !data.refreshToken) {
@@ -69,7 +68,7 @@ export class AxiosHttpClientProvider implements IHttpClientProvider {
         }
 
         return Promise.reject(error);
-      }
+      },
     );
   }
 
