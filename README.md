@@ -68,7 +68,7 @@
 
 <h2>👷 Como testar? </h2>
 <h3>Entre com o seguinte link: </h3>
-<a></a>
+<a>https://vendas-e-estoque.vercel.app/</a>
 <li> Execute o servidor na pasta back-end e depois o front-end
 <li> Crie uma nova conta
 <li> Teste as funcionalidades de cadastrar e editar produtos, clientes, contas e lançamento de vendas;
