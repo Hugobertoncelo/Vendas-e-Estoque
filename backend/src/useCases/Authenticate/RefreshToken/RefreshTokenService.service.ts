@@ -53,7 +53,7 @@ export class RefreshTokenService {
 
     await this.usersTokensRepository.deleteById(userToken._id.toString());
 
-    const refreshToken = sign({}, auth.secretRefreshToken, {
+    const refreshToken = sign({ email }, auth.secretRefreshToken, {
       subject: userId,
       expiresIn: auth.expiresInRefreshToken,
     });
@@ -66,7 +66,7 @@ export class RefreshTokenService {
       expiresDate,
     });
 
-    const newToken = sign({}, auth.secretToken, {
+    const newToken = sign({ email }, auth.secretToken, {
       subject: userId,
       expiresIn: auth.expiresInToken,
     });
