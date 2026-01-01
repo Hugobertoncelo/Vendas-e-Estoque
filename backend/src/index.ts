@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     } else {
       console.warn("[MONGOOSE][HANDLER] Senha não definida!");
     }
-    const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${encodedPassword}@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`;
+    const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${encodedPassword}@stockcontrol.edrkre6.mongodb.net/stockcontrol?appName=stockcontrol`;
     console.log(
       `[MONGOOSE][HANDLER] Conectando em: mongodb+srv://${MONGO_USERNAME}:<PASSWORD>@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`
     );
