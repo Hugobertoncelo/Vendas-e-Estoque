@@ -15,6 +15,10 @@ app.use(express.json());
 app.use(routes);
 app.use(handleErrors);
 
+app.get("/", (req, res) => {
+  res.send("API Vendas-e-Estoque rodando!");
+});
+
 export default async function handler(req, res) {
   if (mongoose.connection.readyState !== 1) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
