@@ -76,11 +76,7 @@ export class AuthenticateUserService {
       subject: user._id.toString(),
       expiresIn: expiresInRefreshToken,
     };
-    const refreshToken = sign(
-      { email },
-      secretRefreshToken,
-      refreshTokenOptions
-    );
+    const refreshToken = sign({}, secretRefreshToken, refreshTokenOptions);
 
     const refreshTokenExpiresDate = this.dateProvider.addDays(
       expiresRefreshTokenDays
