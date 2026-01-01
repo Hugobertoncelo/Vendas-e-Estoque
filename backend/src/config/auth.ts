@@ -1,7 +1,10 @@
+import type { StringValue } from "ms";
+
 export default {
-  secretToken: '55be645bbd881c643aa7ad20be45377c',
-  secretRefreshToken: 'b36239f6b88341e51418583109f73cc5',
-  expiresInToken: '55m',
-  expiresInRefreshToken: '30d',
+  secretToken: process.env.JWT_SECRET || "default_secret",
+  secretRefreshToken:
+    process.env.JWT_REFRESH_SECRET || "default_refresh_secret",
+  expiresInToken: "15m" as StringValue,
+  expiresInRefreshToken: "30d" as StringValue,
   expiresRefreshTokenDays: 30,
-}
+};
