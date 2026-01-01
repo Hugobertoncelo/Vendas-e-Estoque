@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 import { IUsersRepository } from "../../../repositories/Users/IUsersRepository";
 import { inject, injectable } from "tsyringe";
 import { compare } from "bcrypt";
-import { sign, SignOptions } from "jsonwebtoken";
+import { sign } from "jsonwebtoken";
 import { Types } from "mongoose";
 import { AppError } from "../../../errors/AppError";
 import auth from "../../../config/auth";
@@ -60,23 +60,15 @@ export class AuthenticateUserService {
       expiresRefreshTokenDays,
     } = auth;
 
-    if (!secretToken || !secretRefreshToken) {
-      throw new AppError(
-        "JWT secret(s) não definidos nas variáveis de ambiente"
-      );
-    }
-
-    const tokenOptions: SignOptions = {
+    const token = sign({}, secretToken, {
       subject: user._id.toString(),
       expiresIn: expiresInToken,
-    };
-    const token = sign({}, secretToken, tokenOptions);
+    });
 
-    const refreshTokenOptions: SignOptions = {
+    const refreshToken = sign({}, secretRefreshToken, {
       subject: user._id.toString(),
       expiresIn: expiresInRefreshToken,
-    };
-    const refreshToken = sign({}, secretRefreshToken, refreshTokenOptions);
+    });
 
     const refreshTokenExpiresDate = this.dateProvider.addDays(
       expiresRefreshTokenDays

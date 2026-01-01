@@ -32,12 +32,6 @@ export class RefreshTokenService {
   async execute(token: string): Promise<IResponse> {
     if (!token) throw new AppError("Refresh token não enviado");
 
-    if (!auth.secretToken || !auth.secretRefreshToken) {
-      throw new AppError(
-        "JWT secret(s) não definidos nas variáveis de ambiente"
-      );
-    }
-
     const { sub: userId, email } = verify(
       token,
       auth.secretRefreshToken
@@ -53,7 +47,7 @@ export class RefreshTokenService {
 
     await this.usersTokensRepository.deleteById(userToken._id.toString());
 
-    const refreshToken = sign({}, auth.secretRefreshToken, {
+    const refreshToken = sign({ email }, auth.secretRefreshToken, {
       subject: userId,
       expiresIn: auth.expiresInRefreshToken,
     });
