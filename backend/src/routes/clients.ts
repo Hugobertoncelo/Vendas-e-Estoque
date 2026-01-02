@@ -1,17 +1,15 @@
-import { Router } from 'express'
-import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
-import { ClientController } from '../controllers/ClientController'
+import { Router } from "express";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { ClientController } from "../controllers/ClientController";
 
-const clientsRoutes = Router()
-const clientController = new ClientController()
+const clientsRoutes = Router();
+const clientController = new ClientController();
 
-// Middlewares
-clientsRoutes.use(ensureAuthenticated)
+clientsRoutes.use(ensureAuthenticated);
 
-// Routes
-clientsRoutes.post('/', clientController.create)
-clientsRoutes.get('/', clientController.list)
-clientsRoutes.put('/:clientId', clientController.update)
-clientsRoutes.delete('/:clientId', clientController.delete)
+clientsRoutes.post("/", clientController.create);
+clientsRoutes.get("/", clientController.list);
+clientsRoutes.put("/:clientId", clientController.update);
+clientsRoutes.delete("/:clientId", clientController.delete);
 
-export { clientsRoutes }
+export { clientsRoutes };
