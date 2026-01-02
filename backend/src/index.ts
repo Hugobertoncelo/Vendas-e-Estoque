@@ -17,6 +17,7 @@ const allowedOrigins = [
   "https://vendas-e-estoque-git-main-hugobertoncelos-projects.vercel.app",
   "http://localhost:3000",
   "https://vendas-e-estoque-e64b9o8as-hugobertoncelos-projects.vercel.app",
+  "https://vendas-e-estoque.vercel.app",
 ];
 
 app.use(
