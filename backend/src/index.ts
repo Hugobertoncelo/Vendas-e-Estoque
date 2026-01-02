@@ -54,6 +54,13 @@ handler.use(async (req, res, next) => {
 });
 
 handler.use(async (req, res, next) => {
+  console.log("[DEBUG] ENV", {
+    MONGO_USERNAME: process.env.MONGO_USERNAME,
+    MONGO_PASSWORD: process.env.MONGO_PASSWORD
+      ? "[PRESENTE]"
+      : "[VAZIO OU UNDEFINED]",
+    MONGO_DATABASE: process.env.MONGO_DATABASE,
+  });
   if (mongoose.connection.readyState !== 1) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
     let MONGO_PASSWORD = process.env.MONGO_PASSWORD;
