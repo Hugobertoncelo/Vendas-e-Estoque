@@ -7,6 +7,7 @@ import "express-async-errors";
 import { routes } from "./routes";
 import { handleErrors } from "./middlewares/handleErrors";
 import "./database/mongoConfigs";
+import { promisify } from "util";
 
 const app = express();
 
@@ -53,6 +54,24 @@ app.get("/", (req, res) => {
 });
 
 export default async function handler(req, res) {
+  const corsMiddleware = cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  });
+  await promisify(corsMiddleware)(req, res);
+
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
   if (mongoose.connection.readyState !== 1) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
     let MONGO_PASSWORD = process.env.MONGO_PASSWORD;
