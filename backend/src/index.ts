@@ -8,6 +8,8 @@ import { routes } from "./routes";
 import { handleErrors } from "./middlewares/handleErrors";
 import "./database/mongoConfigs";
 import { promisify } from "util";
+import { createRouter } from "next-connect";
+import { expressWrapper } from "next-connect";
 
 const app = express();
 
@@ -25,7 +27,9 @@ app.get("/", (req, res) => {
   res.send("API Vendas-e-Estoque rodando!");
 });
 
-export default async function handler(req, res) {
+const handler = createRouter();
+
+handler.use(async (req, res, next) => {
   const corsMiddleware = cors({
     origin: function (origin, callback) {
       if (!origin) return callback(null, true);
@@ -38,51 +42,48 @@ export default async function handler(req, res) {
     credentials: true,
   });
   await promisify(corsMiddleware)(req, res);
-
   if (req.method === "OPTIONS") {
-    res.status(200).end();
+    res.writeHead(200);
+    res.end();
     return;
   }
+  next();
+});
 
+handler.use(async (req, res, next) => {
   if (mongoose.connection.readyState !== 1) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
     let MONGO_PASSWORD = process.env.MONGO_PASSWORD;
     const encodedPassword = encodeURIComponent(MONGO_PASSWORD || "");
     const MONGO_DATABASE = process.env.MONGO_DATABASE;
     if (!MONGO_DATABASE) {
-      throw new Error(
-        "A variável de ambiente MONGO_DATABASE não está definida!"
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({
+          error: "A variável de ambiente MONGO_DATABASE não está definida!",
+        })
       );
-    }
-    console.log(`[MONGOOSE][HANDLER] Usuário: ${MONGO_USERNAME}`);
-    if (MONGO_PASSWORD) {
-      console.log(
-        `[MONGOOSE][HANDLER] Senha (início): ${MONGO_PASSWORD.slice(
-          0,
-          2
-        )}... (tamanho: ${MONGO_PASSWORD.length})`
-      );
-    } else {
-      console.warn("[MONGOOSE][HANDLER] Senha não definida!");
+      return;
     }
     const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${encodedPassword}@stockcontrol.edrkre6.mongodb.net/${MONGO_DATABASE}?appName=stockcontrol`;
-    console.log(
-      `[MONGOOSE][HANDLER] Conectando em: mongodb+srv://${MONGO_USERNAME}:<PASSWORD>@stockcontrol.edrkre6.mongodb.net/${MONGO_DATABASE}?appName=stockcontrol`
-    );
     try {
       await mongoose.connect(mongoURL, { bufferCommands: false });
-      console.log("[MONGOOSE][HANDLER] Conexão estabelecida com sucesso!");
     } catch (err) {
-      console.error("[MONGOOSE ERROR][HANDLER] Falha ao conectar:", err);
-      return res.status(500).json({
-        error: "Erro ao conectar ao MongoDB",
-        details: err.message,
-        stack: err.stack,
-        full: err,
-      });
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({
+          error: "Erro ao conectar ao MongoDB",
+          details: err.message,
+          stack: err.stack,
+          full: err,
+        })
+      );
+      return;
     }
-  } else {
-    console.log("[MONGOOSE][HANDLER] Já conectado ao MongoDB.");
   }
-  return app(req, res);
-}
+  next();
+});
+
+handler.use(expressWrapper(app));
+
+export default handler;
