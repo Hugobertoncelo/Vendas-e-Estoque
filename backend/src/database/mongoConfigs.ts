@@ -9,7 +9,8 @@ console.log(
 
 const MONGO_USERNAME = process.env.MONGO_USERNAME;
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
-const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`;
+const MONGO_DATABASE = process.env.MONGO_DATABASE;
+const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol.edrkre6.mongodb.net/${MONGO_DATABASE}?appName=stockcontrol`;
 
 console.log("[DEBUG] String de conexão MongoDB:", mongoURL);
 
