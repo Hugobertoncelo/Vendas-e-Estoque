@@ -10,7 +10,26 @@ import "./database/mongoConfigs";
 
 const app = express();
 
-app.use(cors());
+// Configuração CORS personalizada para permitir o domínio do frontend em produção
+const allowedOrigins = [
+  "https://vendas-e-estoque-git-main-hugobertoncelos-projects.vercel.app",
+  "http://localhost:3000",
+];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Permite requisições sem origin (ex: mobile, curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(routes);
 app.use(handleErrors);
