@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./Account");
+require("./Sale");
+require("./Product");
+require("./User");
+require("./Supplier");
+require("./Client");
+require("./UserToken");
+require("./providers");
