@@ -56,6 +56,7 @@ export default async function handler(req, res) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
     let MONGO_PASSWORD = process.env.MONGO_PASSWORD;
     const encodedPassword = encodeURIComponent(MONGO_PASSWORD || "");
+    const MONGO_DATABASE = process.env.MONGO_DATABASE || "vendasestoque";
     console.log(`[MONGOOSE][HANDLER] Usuário: ${MONGO_USERNAME}`);
     if (MONGO_PASSWORD) {
       console.log(
@@ -67,9 +68,9 @@ export default async function handler(req, res) {
     } else {
       console.warn("[MONGOOSE][HANDLER] Senha não definida!");
     }
-    const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${encodedPassword}@stockcontrol.edrkre6.mongodb.net/stockcontrol?appName=stockcontrol`;
+    const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${encodedPassword}@stockcontrol.edrkre6.mongodb.net/${MONGO_DATABASE}?appName=stockcontrol`;
     console.log(
-      `[MONGOOSE][HANDLER] Conectando em: mongodb+srv://${MONGO_USERNAME}:<PASSWORD>@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`
+      `[MONGOOSE][HANDLER] Conectando em: mongodb+srv://${MONGO_USERNAME}:<PASSWORD>@stockcontrol.edrkre6.mongodb.net/${MONGO_DATABASE}?appName=stockcontrol`
     );
     try {
       await mongoose.connect(mongoURL, { bufferCommands: false });
