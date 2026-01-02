@@ -11,9 +11,10 @@ const MONGO_USERNAME = process.env.MONGO_USERNAME;
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
 const MONGO_DATABASE = process.env.MONGO_DATABASE;
 if (!MONGO_DATABASE) {
-  throw new Error(
-    "A variável de ambiente MONGO_DATABASE não está definida! (mongoConfigs.ts)"
+  console.error(
+    "[FATAL] A variável de ambiente MONGO_DATABASE não está definida! (mongoConfigs.ts)"
   );
+  process.exit(1);
 }
 const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol.edrkre6.mongodb.net/${MONGO_DATABASE}?appName=stockcontrol`;
 
