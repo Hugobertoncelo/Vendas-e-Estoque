@@ -102,4 +102,12 @@ export const usersService = {
       token,
     });
   },
+
+  async updateUser(
+    id: string,
+    data: { name?: string; email?: string; password?: string },
+    httpClientProvider: IHttpClientProvider,
+  ) {
+    return httpClientProvider.patch(`/users/${id}`, data);
+  },
 };

@@ -1,9 +1,10 @@
 import { Popover } from "@mui/material";
 import style from "./UserOptions.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faEnvelope, faUser, faCog } from "@fortawesome/free-solid-svg-icons";
 import { IPosition } from "./interfaces/IPosition";
 import { useUserOptions } from "./hooks/useUserOptions";
+import { useRouter } from "next/router";
 
 export interface UserInfo {
   name: string;
@@ -29,6 +30,16 @@ export function UserOptions({ position }: Props) {
         className={style.userButton}
       >
         <FontAwesomeIcon className={style.userIcon} icon={faUser} />
+      </button>
+      <button
+        type="button"
+        className={style.settingsButton}
+        title="Configurações do usuário"
+        onClick={() => {
+          window.location.href = "/user-settings";
+        }}
+      >
+        <FontAwesomeIcon className={style.icon} icon={faCog} />
       </button>
 
       <Popover
