@@ -1,19 +1,21 @@
-import express from "express";
-import { AccountController } from "../controllers/AccountController";
-import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import express from 'express'
+import { AccountController } from '../controllers/AccountController'
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
 
-const contasRoutes = express.Router();
-const accountController = new AccountController();
+const contasRoutes = express.Router()
+const accountController = new AccountController()
 
-contasRoutes.use(ensureAuthenticated);
+// Middlewares
+contasRoutes.use(ensureAuthenticated)
 
-contasRoutes.get("/", accountController.listAccounts);
-contasRoutes.post("/", accountController.createNewAccount);
-contasRoutes.put("/", accountController.updateAccount);
+// Routes
+contasRoutes.get('/', accountController.listAccounts)
+contasRoutes.post('/', accountController.createNewAccount)
+contasRoutes.put('/', accountController.updateAccount)
 contasRoutes.patch(
-  "/updateStatus/:idAccount",
-  accountController.updateStatusAccount
-);
-contasRoutes.delete("/", accountController.deleteAccount);
+  '/updateStatus/:idAccount',
+  accountController.updateStatusAccount,
+)
+contasRoutes.delete('/', accountController.deleteAccount)
 
-export { contasRoutes };
+export { contasRoutes }

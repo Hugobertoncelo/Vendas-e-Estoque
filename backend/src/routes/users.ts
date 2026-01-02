@@ -1,10 +1,9 @@
-import express from "express";
-import { UserController } from "../controllers/UserController";
+import express from 'express'
+import { UserController } from '../controllers/UserController'
 
-const usersRoutes = express.Router();
-const userController = new UserController();
+const usersRoutes = express.Router()
+const userController = new UserController()
 
-usersRoutes.post("/", userController.createNewUser);
-usersRoutes.patch("/:id", userController.updateUser);
+usersRoutes.post('/', userController.createNewUser)
 
-export { usersRoutes };
+export { usersRoutes }

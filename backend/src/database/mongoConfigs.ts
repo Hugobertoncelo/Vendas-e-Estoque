@@ -1,23 +1,17 @@
-import "dotenv/config";
 import mongoose from "mongoose";
 
-console.log("[DEBUG] process.env.MONGO_USERNAME:", process.env.MONGO_USERNAME);
-console.log(
-  "[DEBUG] process.env.MONGO_PASSWORD:",
-  process.env.MONGO_PASSWORD ? "[PRESENTE]" : "[VAZIO OU UNDEFINED]"
-);
+const MONGO_USERNAME = "hugobertoncelo";
+const MONGO_PASSWORD = "Bert0791@";
+const mongoURL = `mongodb+srv://hugobertoncelo:<db_password>@stockcontrol.edrkre6.mongodb.net/?appName=stockcontrol`;
 
-const MONGO_USERNAME = process.env.MONGO_USERNAME;
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
-const MONGO_DATABASE = process.env.MONGO_DATABASE;
-if (!MONGO_DATABASE) {
-  console.error(
-    "[FATAL] A variável de ambiente MONGO_DATABASE não está definida! (mongoConfigs.ts)"
-  );
-  process.exit(1);
-}
-const mongoURL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@stockcontrol.edrkre6.mongodb.net/${MONGO_DATABASE}?appName=stockcontrol`;
-
-console.log("[DEBUG] String de conexão MongoDB:", mongoURL);
+mongoose.connect(mongoURL);
+mongoose.connection
+  .on(
+    "error",
+    console.error.bind(console, "Erro ao conectar com o banco de dados")
+  )
+  .once("open", () => {
+    console.log("Conexão com o banco de dados estabelecida com sucesso");
+  });
 
 export default mongoose;

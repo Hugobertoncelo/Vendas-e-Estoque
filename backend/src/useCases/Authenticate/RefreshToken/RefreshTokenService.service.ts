@@ -6,71 +6,65 @@ import auth from "../../../config/auth";
 import { IDateProvider } from "../../../shared/containers/providers/DateProvider/IDateProvider";
 
 interface IPayload {
-  sub: string;
-  email: string;
+  sub: string
+  email: string
 }
 
-interface IResponse {
-  refreshToken: string;
-  newToken: string;
+interface IResponse  {
+  refreshToken: string
+  newToken: string
 }
 
 @injectable()
 export class RefreshTokenService {
-  usersTokensRepository: IUsersTokensRepository;
-  dateProvider: IDateProvider;
+  usersTokensRepository: IUsersTokensRepository
+  dateProvider: IDateProvider
 
   constructor(
-    @inject("UsersTokensRepository")
+    @inject('UsersTokensRepository')
     usersTokensRepository: IUsersTokensRepository,
-    @inject("DayjsDateProvider") dateProvider: IDateProvider
+    @inject('DayjsDateProvider') dateProvider: IDateProvider
   ) {
-    this.usersTokensRepository = usersTokensRepository;
-    this.dateProvider = dateProvider;
+    this.usersTokensRepository = usersTokensRepository
+    this.dateProvider = dateProvider
   }
 
   async execute(token: string): Promise<IResponse> {
-    if (!token) throw new AppError("Refresh token não enviado");
-
-    if (!auth.secretToken || !auth.secretRefreshToken) {
-      throw new AppError(
-        "JWT secret(s) não definidos nas variáveis de ambiente"
-      );
-    }
+    if (!token) throw new AppError('Refresh token não enviado')
 
     const { sub: userId, email } = verify(
       token,
-      auth.secretRefreshToken
-    ) as IPayload;
+      auth.secretRefreshToken,
+    ) as IPayload
 
     const userToken =
       await this.usersTokensRepository.findByUserIdAndRefreshToken(
         userId,
-        token
-      );
+        token,
+      )
 
-    if (!userToken) throw new AppError("Refresh token não encontrado");
+    if (!userToken) throw new AppError('Refresh token não encontrado')
 
-    await this.usersTokensRepository.deleteById(userToken._id.toString());
+    await this.usersTokensRepository.deleteById(userToken._id.toString())
 
     const refreshToken = sign({ email }, auth.secretRefreshToken, {
       subject: userId,
       expiresIn: auth.expiresInRefreshToken,
-    });
+    })
 
-    const expiresDate = this.dateProvider.addDays(auth.expiresRefreshTokenDays);
+    const expiresDate = this.dateProvider.addDays(auth.expiresRefreshTokenDays)
 
     await this.usersTokensRepository.create({
       user: userId,
       refreshToken,
       expiresDate,
-    });
+    })
 
-    const newToken = sign({ email }, auth.secretToken, {
+    const newToken = sign({}, auth.secretToken, {
       subject: userId,
       expiresIn: auth.expiresInToken,
-    });
+    })
 
-    return { refreshToken, newToken };
+    return { refreshToken, newToken }
   }
 }
