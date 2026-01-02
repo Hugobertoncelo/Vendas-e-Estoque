@@ -19,6 +19,20 @@ const allowedOrigins = [
   "https://vendas-e-estoque-e64b9o8as-hugobertoncelos-projects.vercel.app",
 ];
 
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(routes);
 app.use(handleErrors);
@@ -30,18 +44,6 @@ app.get("/", (req, res) => {
 const handler = createRouter();
 
 handler.use(async (req, res, next) => {
-  const corsMiddleware = cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  });
-  await promisify(corsMiddleware)(req, res);
   if (req.method === "OPTIONS") {
     res.writeHead(200);
     res.end();
