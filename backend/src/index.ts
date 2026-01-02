@@ -57,6 +57,11 @@ export default async function handler(req, res) {
     let MONGO_PASSWORD = process.env.MONGO_PASSWORD;
     const encodedPassword = encodeURIComponent(MONGO_PASSWORD || "");
     const MONGO_DATABASE = process.env.MONGO_DATABASE;
+    if (!MONGO_DATABASE) {
+      throw new Error(
+        "A variável de ambiente MONGO_DATABASE não está definida!"
+      );
+    }
     console.log(`[MONGOOSE][HANDLER] Usuário: ${MONGO_USERNAME}`);
     if (MONGO_PASSWORD) {
       console.log(
