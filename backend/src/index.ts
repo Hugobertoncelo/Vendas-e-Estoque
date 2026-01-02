@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     const MONGO_USERNAME = process.env.MONGO_USERNAME;
     let MONGO_PASSWORD = process.env.MONGO_PASSWORD;
     const encodedPassword = encodeURIComponent(MONGO_PASSWORD || "");
-    const MONGO_DATABASE = process.env.MONGO_DATABASE || "vendasestoque";
+    const MONGO_DATABASE = process.env.MONGO_DATABASE;
     console.log(`[MONGOOSE][HANDLER] Usuário: ${MONGO_USERNAME}`);
     if (MONGO_PASSWORD) {
       console.log(
