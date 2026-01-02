@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateNewUserService } from "../useCases/User/CreateNewUser/CreateNewUserService.service";
 import { UsersRepository } from "../repositories/Users/UsersRepository";
-import bcrypt from "bcryptjs";
 
 export class UserController {
   async createNewUser(req: Request, res: Response): Promise<Response> {
@@ -36,23 +35,19 @@ export class UserController {
       }
       if (name) user.name = name;
       if (email) user.email = email;
-      if (password) user.password = await bcrypt.hash(password, 8);
+      if (password) user.password = password;
       await (usersRepository.model as any).updateOne({ _id: id }, user);
-      return res
-        .status(200)
-        .json({
-          success: true,
-          item: user,
-          message: "Usuário atualizado com sucesso",
-        });
+      return res.status(200).json({
+        success: true,
+        item: user,
+        message: "Usuário atualizado com sucesso",
+      });
     } catch (err) {
-      return res
-        .status(500)
-        .json({
-          success: false,
-          message: "Erro ao atualizar usuário",
-          error: err.message,
-        });
+      return res.status(500).json({
+        success: false,
+        message: "Erro ao atualizar usuário",
+        error: err.message,
+      });
     }
   }
 }
