@@ -118,5 +118,4 @@ handler.use(async (req, res, next) => {
 handler.use(cors(corsOptions));
 handler.use(expressWrapper(app));
 
-export default handler;
 module.exports = handler;
