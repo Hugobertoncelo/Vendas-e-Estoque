@@ -6,8 +6,6 @@ import cors from "cors";
 import "express-async-errors";
 import { routes } from "./routes";
 import { handleErrors } from "./middlewares/handleErrors";
-import "./database/mongoConfigs";
-import { promisify } from "util";
 import { createRouter } from "next-connect";
 import { expressWrapper } from "next-connect";
 
